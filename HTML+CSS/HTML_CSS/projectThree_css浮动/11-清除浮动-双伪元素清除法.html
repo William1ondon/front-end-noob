@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .top {
+            margin: 0 auto;
+            width: 1000px;
+            background-color: skyblue;
+        }
+
+        .bottom {
+            height: 100px;
+            background-color: orange;
+        }
+
+        .left {
+            float: left;
+            width: 200px;
+            height: 300px;
+            background-color: #ccc;
+        }
+
+        .right {
+            float: right;
+            width: 790px;
+            height: 300px;
+            background-color: sienna;
+        }
+
+        /* .clearfix::before作用：解决外边距塌陷问题
+            互相嵌套的块级元素，子元素的margin-top会作用在父元素上，让父元素一起移动 */
+        .clearfix::before,
+        .clearfix::after {
+            content: '';
+            display: table;
+        }
+
+        .clearfix::after {
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <div class="top clearfix">
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+    <div class="bottom"></div>
+</body>
+</html>

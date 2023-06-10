@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let inventory = [
+            {name:  'apples', quantity: 2},
+            {name:  'bananas', quantity: 0},
+            {name:  'cherries', quantity: 6},
+        ];
+
+        function findCherries(fruit){
+            return fruit.name === 'cherries';
+        }
+
+        console.log(inventory.find(findCherries));// [Log] Object (22-数组Array方法find.html, line 21)name: "cherries" quantity: 6
+
+        const arr = [
+            {
+                name:'小米',
+                price:1999,
+            },
+            {
+                name:'华为',
+                price:3999,
+            },
+            {
+                name:'小米',
+                price:19299,
+            },{
+                name:'小米',
+                price:1399,
+            },{
+                name:'小米',
+                price:19599,
+            },{
+                name:'小米',
+                price:1912399,
+            },
+            {
+                name:'华为',
+                price:13999,
+            },{
+                name:'华为',
+                price:23999,
+            },
+        ]
+        console.log(arr.find((item) => item.name === '小米'));
+    </script>
+</body>
+</html>

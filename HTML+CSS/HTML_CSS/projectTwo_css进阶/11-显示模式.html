@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span {
+            width: 300px;
+            height: 300px;
+            background-color:blueviolet;
+        }
+    </style>
+</head>
+<body>
+    <!-- 块级元素特点：
+    ·独占一行
+    ·宽度默认是父元素的宽度，高度默认由内容撑开
+    ·可以设置宽高 
+    代表标签：div、p、ul、li、dl、dt、dd、form、header、nav、footer -->
+    <div>111111</div>
+    <p>222222</p>
+
+    <!-- 行内元素特点：
+    ·一行可以显示多个
+    ·宽度和高度默认由内容撑开
+    ·无法设置宽高
+    代表标签：a、span、b、u、i、s、strong、ins、em、del -->
+    <span>span</span>
+    <span>span</span>
+    <br>
+
+    <!-- 行内块元素特点：
+    ·一行可以显示多个
+    ·可以设置宽高
+    代表标签：input、textarea、button、select -->
+    <img src="35.jpg" width="300px" alt="">
+    <img src="35.jpg" width="300px" alt="">
+    <br>
+
+    <!-- 元素显示模式转换
+    属性：
+    ·display：block         转换成块级元素
+    ·display：inline-block  转换成行内块元素
+    ·display：inline        转换成行内元素 -->
+    <div style="display: inline; background-color:chartreuse;">aaa</div>
+    <div style="display: inline; background-color:chartreuse;">bbb</div>
+</body>
+</html>

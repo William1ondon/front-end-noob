@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <!-- v-if 
+    基于表达式seen的值的真假来移除/插入该<p>元素。 -->
+    <div id="app">
+        <div v-on:click="doSomeThing">{{count}}</div>
+        <!-- v-on对应缩写是@ -->
+        <div @:click="doSomeThing">{{count}}</div>
+    </div>
+    <script>
+        const {createApp} = Vue;
+        createApp({
+            data(){
+                return {
+                    count : 0
+                };
+            },
+
+            methods : {
+                doSomeThing(){
+                    // 在Vue组件中，this关键字指向组件实例对象，即当前正在操作的Vue组件实例。
+                    // 通过this你可以访问组件的数据、方法、计算属性等
+                    this.count++;
+                }
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>

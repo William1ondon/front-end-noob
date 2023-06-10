@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .father {
+            width: 600px;
+            height: 600px;
+            background-color: skyblue;
+        }
+
+        .son {
+            width: 300px;
+            height: 300px;
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+<body>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+    <script>
+        const father = document.querySelector('.father');
+        const son = document.querySelector('.son');
+        // 不加的话是先son father grandfather ，其为：冒泡阶段
+        // 加了的话是：捕获阶段
+        document.addEventListener('click', function(){
+            alert('GrandFather');
+        }, false);
+
+        father.addEventListener('click', function(){
+            alert('Father');
+        }, false);
+
+        son.addEventListener('click', function(e){
+            alert('Son');
+            e.stopPropagation();//阻止传播
+        }, false);
+
+        // 冒泡概念：当一个元素触发事件后，会依次向上调用所有父级元素的同名事件
+    </script>
+</body>
+</html>

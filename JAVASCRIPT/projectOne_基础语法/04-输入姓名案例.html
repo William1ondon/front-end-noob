@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            border: 2px solid black;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        let uname = prompt('请输入姓名');
+        let age = prompt('请输入年龄');
+        let gender = prompt('请输入性别');
+        document.write('\
+        <table>\
+            <thead>\
+                <tr>\
+                    <th>Name</th>\
+                    <th>Age</th>\
+                    <th>Gender</th>\
+                </tr>\
+            </thead>\
+            <tbody>\
+                <tr>\
+                    <td>'+uname+'</td>\
+                    <td>'+age+'</td>\
+                    <td>'+gender+'</td>\
+                </tr>\
+            </tbody>\
+        </table>');
+    </script>
+</body>
+</html>

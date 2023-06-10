@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        apply方法：
+            ·语法：function.apply(thisArg, [argsArray])
+                ^'thisArg'是要指定的函数执行的上下文，即函数内部的'this'值。
+                ^'argsArray'是一个可选的数组，包含要传递给函数的参数列表。
+            
+            ·特性：
+                ^当调用apply方法时，函数会立即执行，并将指定的'thisArg'作为函数内部的'this'值。
+                ^若不传递'argsArray'参数，则函数不接受任何参数；若传递了'argsArray'参数，则函数会使用数组中的元素作为参数传递给函数。
+        */
+
+        function greet(name){
+            console.log(`Hello! ${name}`);
+            if(this.name)
+                console.log(`Hello! ${this.name}`);
+        }
+
+        greet.apply(null, ['John']);// Hello! John
+
+        const person = {
+            name : 'Alice'
+        }
+        // 指定函数中上下文为person对象，所以会输出Alice
+        greet.apply(person, ['William']);// Hello! William  Hello! Alice
+
+        /* 
+        应用：使用apply来链接构造函数
+        
+        作用：创建一个>>>全局<<<的所有构造函数都可以 接受输入的类数组参数 而无需专门定制
+        */
+        // step1: 在所有函数的原型链的尽头，也就是他们的爹，那里挂上一个用于传参的函数，那样所有的函数(对象)都能用了
+        /*
+        此示例证明了所有构造函数的__proto__都是以Function的原型对象(prototype) 为 原型 的对象
+            console.log(Function);// function Function(){[native code]}
+            console.log(Function.prototype);// function(){[native code]}
+            function parent(name){
+                this.name = name;
+            }
+            // 函数的 原型对象的 构造函数（就是指回去了） 的属性描述符
+            let des = Object.getOwnPropertyDescriptor(parent.prototype, 'constructor');
+            console.log(des);
+            console.log(des.value.__proto__);// function(){[native code]}
+        */
+       Function.prototype.construct = function (aArgs){
+        console.log(this);// 谁调用this指向谁，所以这里是myConstructor(){}
+
+        // 这里涉及到原型继承的内容
+        let objNew = Object.create(this.prototype);
+
+        // 构造函数只是用来提供一个构造方式来使用参数的，对象实际是什么样子得看prototype
+        this.apply(objNew, aArgs);
+        return objNew;
+       }
+
+       function myConstructor(){
+        // 这里的arguments是函数的一个属性，Object.getOwnPropertyDescriptor(myConstructor.prototype, 'constructor').value可以看到
+        for(let i = 0; i < arguments.length; i++){
+            this['property' + `${i}`] = arguments[i];
+        }
+       }
+
+       function luanQiBaZaoDeConstructor(){
+        for(let i = 0; i < arguments.length; i++){
+            this['ShuXing' + `${i}`] = arguments[i];
+        }
+       }
+
+       const who = myConstructor.construct([123456, '天天笑哈哈', true]);
+       console.log(who);
+       const who1 = luanQiBaZaoDeConstructor.construct([22345678, '天天笑嘻嘻', true]);
+       console.log(who1);
+    </script>
+</body>
+</html>

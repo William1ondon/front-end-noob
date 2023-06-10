@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //  获取当前时间
+        const date0 = new Date();
+        console.log(date0);
+
+        // 获取指定时间
+        const date1 = new Date('2023-12-25 21:21:00');
+        console.log(date1);
+
+        console.log(date0.getFullYear());
+        console.log(date0.getMonth());// 0~11
+        console.log(date0.getDate());
+        console.log(date0.getDay());// 星期几 0～6, 周日是0
+        console.log(date0.getHours());// 0~23
+        console.log(date0.getMinutes());// 0~59
+        console.log(date0.getSeconds());// 0~59
+
+        console.log(date0.toDateString());// Wed May 03 2023
+        /* dateObj.toLocaleDateString([locales[, options]]) 
+        locales指定语言环境 options指定各种格式化选项*/
+        console.log(date0.toLocaleDateString('zh-CN', {year: 'numeric', month: 'long', day: 'numeric'}));// 默认不填就2023/5/3，这里打印 2023年5月3日
+        console.log(date0.toLocaleTimeString());// 14:52:14
+
+    </script>
+</body>
+</html>

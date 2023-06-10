@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .child {
+            width: 300px;
+            height: 300px;
+            background-color: skyblue;
+        }
+
+        .active {
+            background-color: red;
+        }
+
+        .whatever {
+            border-radius: 10px;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 方案1: 直接使用内联字面量 -->
+        <!-- <div class="child" v-bind:class="{ 'active': isActive }"></div> -->
+        
+        <!-- 方案2: 直接绑定一个对象 -->
+        <!-- <div class="child" :class="attributeObj"></div> -->
+
+        <!-- 方案3(常用): 绑定一个返回对象的计算属性, -->
+        <!-- <div class="child" v-bind:class="computedObj"></div> -->
+
+        <!-- 方案4: 绑定数组,数组中可用三元表达式 -->
+        <!-- <div class="child" v-bind:class="[isActive ? active : '', whatever]"></div> -->
+        <!-- 数组中嵌套对象 -->
+        <div class="child" v-bind:class="[active, whatever]"></div>
+    </div>
+
+<script type="module">
+  import { createApp, ref, computed,reactive } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+  
+  createApp({
+        setup(){
+            const isActive = ref(true);
+            const attributeObj = ref({
+                active: true,
+                'whatever': true,
+            });
+
+            let active = ref('active');
+            let whatever = ref('whatever');
+            let num = ref({count:0});
+
+            (function logFunc(){
+                console.log('num', num);
+                console.log('num.value', num.value);
+                num.count++;
+                console.log('num', num);
+                console.log('num.value', num.value);
+            })();
+
+            // 注意这里是直接返回了，就是  ()=>(要返回的东西)
+            const computedObj = computed(() => ({
+                active: attributeObj.value.active,
+                whatever: attributeObj.value['whatever'],
+            }));
+
+            return {
+                isActive,
+                attributeObj,
+                computedObj,
+                active,
+                whatever,
+            };
+        }
+  }).mount('#app')
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            position: relative;
+            height: 5000px;
+        }
+
+        div {
+            position: absolute;
+            top: 100px;
+            display: none;
+            margin: 0 auto;
+            width: 300px;
+            height: 300px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+        console.log(document.body);//body
+        console.log(document.documentElement);//html，最大那个
+        const div = document.querySelector('div');
+        const body = document.querySelector('body');
+        window.addEventListener('scroll', function(){
+            // screenTop/scrollY:被卷去的距离（px）
+            console.log('srolling!');
+            console.log(window.scrollY);
+            if(window.scrollY > 300){
+                div.style.display = 'block';
+            }else{
+                div.style.display = 'none';
+            }
+        });
+
+        // window.addEventListener('scroll', function(){
+        //     // screenTop/scrollY:被卷去的距离（px）
+        //     console.log('srolling!');
+        //     console.log(document.documentElement.scrollTop);
+        //     if(document.documentElement.scrollTop > 300){
+        //         div.style.display = 'block';
+        //     }else{
+        //         div.style.display = 'none';
+        //     }
+        // });
+
+        document.documentElement.scrollTop = 800;//可读写，直接滚到对应地方
+    </script>
+</body>
+</html>

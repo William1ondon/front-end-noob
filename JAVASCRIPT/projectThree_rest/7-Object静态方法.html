@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+        Object.getOwnPropertyDescriptor(Object,'property')
+            @该方法返回对象上的 指定自有属性的 属性描述符对象（自由属性 即直接赋予该对象的属性，不需要从原型链上进行查找的属性）
+            @溯源：在Javascript中，属性 由一个字符串类型的“名字”（name）和一个“属性描述符”（property descriptor）对象构成。更多关于属性描述符类型以及他们属性的信息可以查看：Object.defineProperty.
+        */
+        const obj = {
+            name : 'HomePod 2'
+        }
+        const descriptor = Object.getOwnPropertyDescriptor(obj, 'name');
+        console.log(descriptor);// 打印如下
+        /*
+        [Log] Object (7-Object静态方法.html, line 15)
+        configurable: true
+        enumerable: true
+        value: "HomePod 2"
+        writable: true
+        “Object”原型
+        */
+       console.log(descriptor.value);// HomePod 2
+       console.log(obj.name);
+
+       /*
+        Object.create(proto)
+        Object.create(proto, propertiesObject)
+            @Object.create()静态方法以一个现有对象为原型(prototype/__proto__)，创建一个新对象，该新对象的constructor也变为原型对象的constructor。
+            ^proto: 新创建对象的原型对象
+            ^propertiesObject: 如果该参数被指定且不为 undefined，则该传入对象可枚举的自有属性将为新创建的对象添加具有对应属性名称的属性描述符。这些属性对应于 Object.defineProperties() 的第二个参数。
+       */
+       function person(){
+            eat = ()=> {console.log('eat');};
+            sleep = ()=> {console.log('sleep');};
+        }
+
+        const Tony = Object.create(person.prototype);
+        console.log(Tony);
+        console.log(Tony.constructor);
+    </script>
+</body>
+</html>

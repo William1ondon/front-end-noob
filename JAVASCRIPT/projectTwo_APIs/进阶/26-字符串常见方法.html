@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 【字符串】split方法
+        const str = 'pink,red';
+        const arr = str.split(',');
+        console.log(arr);// [pink,red] 与join相反
+
+        console.log('----------------------------------');
+
+        // 【字符串】substring(开始的索引号[，结束的索引号])
+        const str1 = '今天又是开心的一天';
+        console.log(str1.substring(4,6));// 开心
+
+        console.log('----------------------------------');
+
+        // 【字符串】startsWith(searchString[, 从position开始找]) endsWith(searchString[, 从头个字开始数的length])
+        const str2 = 'To be, or not to be, that is the question';
+        console.log(str2.startsWith('To be'));  // true
+        console.log(str2.startsWith('not to be'));  // false
+        console.log(str2.startsWith('not to be', 10));  //true
+
+        console.log('----------------------------------');
+
+        // 【数组】includes(searchElement)  includes(searchElement, fromIndex)
+        const array = ['rabbit', 'cat', 'dog', 'pig'];
+        console.log(array.includes('cat'));// true
+        console.log(array.includes('cat', 2));// false
+
+        console.log('----------------------------------');
+
+        // 【字符串】 str.toUpperCase()     str.toLowerCase()
+        const str3 = 'I love apple';
+        console.log(str3.toUpperCase());// I LOVE APPLE
+
+        console.log('----------------------------------');
+
+        // 【数组】indexOf(searchElemennt)  indexOf(searchElement, fromIndex)
+        const array1 = ['ant', 'bison', 'camel', 'duck', 'bison'];
+        console.log(array1.indexOf('duck'));// 3
+        console.log(array1.indexOf('duck', 2));// 3
+
+        console.log('----------------------------------');
+
+        /* 【字符串】str.replace(regexp|substr, newSubStr|function)
+        replace() 方法返回一个由替换值（replacement）替换部分或所有的模式（pattern）匹配项后的新字符串。模式可以是一个字符串或者一个正则表达式，替换值可以是一个字符串或者一个每次匹配都要调用的回调函数。如果pattern是字符串，则仅替换第一个匹配项。
+        你可以指定一个函数作为第二个参数。在这种情况下，当匹配执行后，该函数就会执行。函数的返回值作为替换字符串。
+        */
+        const p = 'The dog quick brown fox jumps over the lazy dog. If the dog reacted, was it really lazy?';
+        console.log(p.replace('dog', 'monkey'));
+        // Expected output: "The quick brown fox jumps over the lazy monkey. If the dog reacted, was it really lazy?"
+        const regex = /Dog/i;
+        console.log(p.replace(regex, 'ferret'));
+        // Expected output: "The quick brown fox jumps over the lazy ferret. If the dog reacted, was it really lazy?"
+        console.log(p.replace(/Dog/ig, () => 'cat'));// g表示全局 i表示忽略大小写
+        // The cat quick brown fox jumps over the lazy cat. If the cat reacted, was it really lazy?
+
+        function replacer(match, p1, p2, p3, offset, string) {
+            // p1 is nondigits, p2 digits, and p3 non-alphanumerics
+            console.log(match);// abc12345#$*%
+            return [p1, p2, p3].join(' - ');
+        }
+        var newString = 'abc12345#$*%123'.replace(/([^\d]*)(\d*)([^\w]*)/, replacer);
+        console.log(newString); 
+
+        console.log('----------------------------------');
+        // 【字符串】match(regexp)
+        const str5 = '你!诶?啊~呃...哈哈:p';
+        console.log(str5.match(/[^\w\s]/g));
+
+        const text = "Hello, World!";
+const pattern1 = /(\w+), (\w+)/; // 捕获分组
+const result1 = text.match(pattern1);
+console.log(result1);
+    </script>
+</body>
+</html>

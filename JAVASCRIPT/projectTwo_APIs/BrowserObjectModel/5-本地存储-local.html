@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // localStorage.setItem.setItem(key, value);
+        localStorage.setItem('uname', 'William');
+
+        setTimeout(function(){
+            // 获取方式
+            console.log(localStorage.getItem('uname'));
+        }, 1000);
+
+        // 删除本地存储 只删除名字
+        localStorage.removeItem('uname');
+
+        // 改
+        localStorage.setItem('uname', 'Jennifer');
+
+        // 本地存储只能存储字符串类型，填数字的话会自动转换成字符串
+        localStorage.setItem('age', 23);
+        console.log(localStorage.getItem('age'));
+
+        // sessionStorage跟localStorage的区别就是session的生命周期随浏览器的关闭而结束
+    </script>
+</body>
+</html>

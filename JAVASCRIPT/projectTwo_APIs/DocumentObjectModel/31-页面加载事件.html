@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 直接这么写会错，因为此时button还未加在，元素为空
+        // const btn = document.querySelector('button');
+        // btn.addEventListener('click', function(){
+        //     alert('haha');
+        // });
+
+        // 等待页面所有资源加载完毕，再执行函数
+        // load事件会在整个页面及其所有依赖资源（包括样式表、图片、子框架等）都已经加载完毕后触发
+        // window.addEventListener('load', function(){
+        //     const btn = document.querySelector('button');
+        //     btn.addEventListener('click', function(){
+        //         alert('haha');
+        //     });
+        // });
+
+        // 也可以用于等待图片加在完毕之类的事情
+        // img.addEventListener('load', function(){});
+
+        // 也可以使用DOMContentLoaded
+        // 当初始的HTML文档被完全加载和解析完毕后，该事件被触发，而无需等待样式表、图像等完全加载
+        document.addEventListener('DOMContentLoaded', function(){
+            const btn = document.querySelector('button');
+            btn.addEventListener('click', function(){
+                alert('haha');
+            });
+        });
+    </script>
+</head>
+<body>
+    <button>click</button>
+</body>
+</html>

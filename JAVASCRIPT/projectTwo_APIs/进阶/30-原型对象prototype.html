@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        ·构造函数通过原型分配的函数是所有对象所共享的
+        ·JavaScript规定，每一个构造函数都有一个prototype属性，指向另一个对象，所以我们也称为原型对象
+        ·这个对象可以挂载函数，对象实例化不会多次创建原型上的那个函数，节约内存
+        ·构造函数和原型对象中的this都指向实例化的对象
+        */
+       //    公共的属性写到构造函数里面
+       function objConstruct(name, age){
+        this.name = name;
+        this.age = age;
+        // this.sing = function sing(){}; //这种方式在每次实例化的时候都会创建一个函数
+       }
+       //    公共的方法写到原型对象里面
+       objConstruct.prototype.sing = () => console.log('你...何以始终不说话');
+
+       const Eason = new objConstruct('陈奕迅', 48);
+       const William = new objConstruct('William London', 23);
+       Eason.sing();
+       William.sing();
+       console.log('isSingDifferent:', Eason.sing !== William.sing);
+
+       /*
+       原型对象里的constructor属性
+       ·该属性指向该原型对象的构造函数
+       */
+       console.log(objConstruct.prototype.constructor === objConstruct);
+
+        // 重点：当添加两个方法的时候
+       objConstruct.prototype = {
+        // 指回创造这个原型对象的 构造函数      感觉相当于重新生成原型对象
+        constructor : objConstruct,
+        sing : function(){console.log('sing');},
+        dance : function(){console.log('dance');}
+       }
+       console.log(objConstruct.prototype.constructor === objConstruct);
+    </script>
+</body>
+</html>

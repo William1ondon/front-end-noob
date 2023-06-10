@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- proxy:
+    proxy可以理解成，在目标对象之前架设一层“拦截”，外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写。
+
+    ·语法：
+        let proxy = new Proxy(target, handler);
+        target参数表示所要拦截的目标对象
+        handler参数也是一个对象，用于定制拦截行为
+    -->    
+
+    <script>
+        // 1、基础示例：当对象中不存在属性名时，默认返回值为38
+        const obj0 = {
+            name : 'William',
+            age : 23,
+        }
+        const handler0 = {
+            get: function(obj, prop){
+                return prop in obj ? obj[prop] : 38;
+            }
+        };
+        const proxyObj0 = new Proxy(obj0, handler0);
+
+        // 1、代理会将所有应用到它的操作转发到这个对象上(无操作转发代理)
+        proxyObj0.a = 1;
+        console.log(proxyObj0.a);// 1
+        console.log(obj0.a);// 1
+
+        console.log(proxyObj0.c, 'c' in obj0);// 38,   false
+
+        console.log('-------------------- 分割线 --------------------');
+        // 2、验证示例：通过代理，你可以轻松地验证向一个对象的传值
+        const obj1 = {
+            name : 'Tony',
+            age : 23,
+        }
+        const handler1 = {
+            set: function(obj, prop, value){
+                if(prop === 'age'){
+                    if(!Number.isInteger(value)){
+                        throw new TypeError('Theage is not an integer');
+                    }
+                    if(value > 200){
+                        throw new RangeError('The age seems too large');
+                    }
+                }
+
+                // 默认操作
+                obj[prop] = value;
+
+                return true;
+            }
+        };
+        const proxyObj1 = new Proxy(obj1, handler1);
+        // proxyObj1.age = 2000;// [Error] RangeError: The age seems too large
+        console.log(obj1.age);// 23
+        // proxyObj1.age = 'abc';// [Error] TypeError: The age is not an integer
+        proxyObj1.age = 18;
+        console.log(obj1.age);// 18
+    </script>
+</body>
+</html>

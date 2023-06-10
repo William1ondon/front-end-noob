@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .style {
+            /* 控制子的都能继承 */
+            color: blueviolet;
+            font-size: 20px;
+
+            /* 不是控制字都不能继承 */
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="style">
+        这是父级div标签里的文字
+        <div>这是div里面的div</div>
+
+        <!-- 特殊情况，像超链接这种有自己的颜色的，就不能继承div的color -->
+        <a href="#">这是一个超链接</a>
+        <!-- 或者像标题这种有自己特定字号的也不能继承size -->
+        <h1>这是一级标题</h1>
+    </div>
+</body>
+</html>

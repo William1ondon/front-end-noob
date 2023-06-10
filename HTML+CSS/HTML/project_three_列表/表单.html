@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        type类型
+        text:文本框，用于输入单行文本
+        password：输入密码
+        radio：单选框
+        checkbox：多选框
+        file：文件选择，用于上传文件
+        submit：提交按钮
+        reset：用于重置
+        button：普通按钮，默认无功能，需配合js使用
+     -->
+    <!-- placeholder：文本框提示 -->
+    <form action="">
+        文本框：<input type="text" placeholder="请输入用户名" name="" id=""><br>
+        密码：<input type="password" placeholder="请输入密码"><br>
+        <!-- name：分组，有相同name属性值的单选框为一组，一组只有一个能被选中
+            checked：默认选中 -->
+        单选框：男<input type="radio" name="gender" checked> 女<input type="radio" name="gender"><br>
+        多选框：<input type="checkbox"><br>
+        <!-- multiple：可多选文件 -->
+        选择文件：<input type="file" multiple><br>
+        <!-- 若要提交/重置生效，需要添加一个表单域form -->
+        提交：<input type="submit" value="注册！"><br>
+        重置：<input type="reset" value="轻易不要按"><br>
+        按钮：<input type="button" value="普通按钮"><br>
+    </form>
+
+    <!-- button 按钮标签 -->
+    <button>我是按钮</button><br>
+    <button type="submit">提交按钮</button><br>
+    <button type="reset">重置按钮</button><br>
+    <button type="button">普通按钮</button><br>
+
+    <!-- select 下拉菜单标签 
+    select标签：    下拉菜单的整体
+    option标签：    下拉菜单的每一项 -->
+    <select name="" id="">
+        <option value="">北京</option>
+        <option value="">上海</option>
+        <option value="">广州</option>
+        <option value="">深圳</option>
+        <!-- selected：默认选中，不写这个就默认第一个 -->
+        <option value="" selected>中山</option>
+    </select><br>
+
+    <!-- textarea 文本域标签
+    常见属性（但这两个属性一般不用，要用css）：
+    cols：规定文本域内可见宽度
+    rows：规定了文本域内可见行数 -->
+    <textarea name="" id="" cols="30" rows="10"></textarea><br>
+
+    <!-- label标签
+    使用场景：常用于绑定内容与表单标签
+    实现方法有以下两种： -->
+    <!-- 方法1:
+    1.使用label标签把内容（如文本）包裹起来
+    2.在表单标签上添加id属性
+    3.在label标签的for属性中设置对应的id属性值 -->
+    <label for="man">男</label>
+    <input type="radio" name="sex" id="man">
+    <label for="2">女</label>
+    <input type="radio" name="sex" id="2"><br>
+    <!-- 方法2:
+    1.直接使用label标签把内容（如文本）和表单标签一起包裹起来
+    2.把label标签的for属性删掉 -->
+    <label>
+        <input type="radio" name="color">Black
+    </label>
+    <label>
+        <input type="radio" name="color">White
+    </label>
+</body>
+</html>

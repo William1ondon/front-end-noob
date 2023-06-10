@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="demo"></h1>
+    <script>
+        // let promise0 = new Promise(function(myresolve, myreject){
+        //     setTimeout(()=>{myresolve("I have waited for 3 seconds!");}, 3000);
+        // })
+        // promise0.then(function(words){document.getElementById('demo').innerHTML = words;});
+
+        async function myDisplayer(){
+            let promise = new Promise(function(myresolve, myreject){
+                // 默认函数体就是(value) => value;
+                myresolve("I LOVE YOU!!");
+            })
+
+            document.getElementById("demo").innerHTML = await promise;
+        }
+
+        myDisplayer();
+    </script>
+</body>
+</html>

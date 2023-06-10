@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            border: 2px solid #000000;
+        }
+
+        th,td {
+            text-align: center;
+            border: 1px solid #000000;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        let userName = prompt('请输入您的姓名');
+        let num = prompt('请输入您要购买的件数');
+        let dest = prompt('请输入您的收货地址');
+        document.write(`\
+        <table>\
+        <thead>\
+            <tr>\
+                <th>商品名称</th>\
+                <th>商品价格</th>\
+                <th>购买件数</th>\
+                <th>总价</th>\
+                <th>姓名</th>\
+                <th>收货地</th>\
+            </tr>\
+        </thead>\
+        <tbody>\
+            <tr>\
+                <td>iPhone14 Pro Max</td>\
+                <td>¥10999</td>\
+                <td>${num}</td>\
+                <td>${num*10999}</td>\
+                <td>${userName}</td>\
+                <td>${dest}</td>\
+            </tr>\
+        </tbody>\
+    </table>\
+        `);
+    </script>
+</body>
+</html>

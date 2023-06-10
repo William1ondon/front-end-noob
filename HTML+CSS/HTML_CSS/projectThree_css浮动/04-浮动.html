@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+        }
+
+        .one {
+            background-color: blueviolet;
+        }
+
+        .two {
+            background-color: wheat;
+        }
+
+        .img {
+            width: 150px;
+            height: auto;
+
+            /* 浮动在左边 */
+            float: left;
+        }
+
+        .div {
+            width: 100px;
+            height: 100px;
+
+            /* div本来就是块，这里的目的是把上面div对display的设置抹除 */
+            display:block;
+        }
+
+        .three {
+            background-color: tomato;
+
+            float: left;
+        }
+
+        .four {
+            background-color: steelblue;
+
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <!-- 浏览器解析行内块或者行内标签的时候，如果标签换行书写会产生一个空格的距离 -->
+    <!-- <div class="one">one</div>
+    <div class="two">two</div> -->
+
+    <!-- 这时候就要用到 浮动 去解决这个问题了
+    浮动有以下两种用途： -->
+
+    <!-- 1.图文环绕 -->
+    <img src="60.jpg" class="img" alt="">
+    在启动时启用启动时间记录。要使用它，请插入使用合适的 BOOTSTAGE_ID 调用 bootstage_mark()bootstage.h。每个 ID 仅记录一个条目。你可以使用 bootstage_mark_name() 为条目命名。你也可以使用 bootstage_start() 记录特定阶段的运行时间在开始之前和 bootstage_accum() 在完成时。引导阶段将将所有累计时间加起来上报。通常，ID 在 bootstage.h 中定义，但少数通过传递 BOOTSTAGE_ID_ALLOC 可以使用额外的“用户”ID作为身份证。调用 show_boot_progress() 也会生成日志条目，但这些不会有名字。在启动时启用启动时间记录。要使用它，请插入使用合适的 BOOTSTAGE_ID 调用 bootstage_mark()bootstage.h。每个 ID 仅记录一个条目。你可以使用 bootstage_mark_name() 为条目命名。你也可以使用 bootstage_start() 记录特定阶段的运行时间在开始之前和 bootstage_accum() 在完成时。引导阶段将将所有累计时间加起来上报。通常，ID 在 bootstage.h 中定义，但少数通过传递 BOOTSTAGE_ID_ALLOC 可以使用额外的“用户”ID作为身份证。调用 show_boot_progress() 也会生成日志条目，但这些不会有名字。在启动时启用启动时间记录。要使用它，请插入使用合适的 BOOTSTAGE_ID 调用 bootstage_mark()bootstage.h。每个 ID 仅记录一个条目。你可以使用 bootstage_mark_name() 为条目命名。你也可以使用 bootstage_start() 记录特定阶段的运行时间在开始之前和 bootstage_accum() 在完成时。引导阶段将将所有累计时间加起来上报。通常，ID 在 bootstage.h 中定义，但少数通过传递 BOOTSTAGE_ID_ALLOC 可以使用额外的“用户”ID作为身份证。调用 show_boot_progress() 也会生成日志条目，但这些不会有名字。在启动时启用启动时间记录。要使用它，请插入使用合适的 BOOTSTAGE_ID 调用 bootstage_mark()bootstage.h。每个 ID 仅记录一个条目。你可以使用 bootstage_mark_name() 为条目命名。你也可以使用 bootstage_start() 记录特定阶段的运行时间在开始之前和 bootstage_accum() 在完成时。引导阶段将将所有累计时间加起来上报。通常，ID 在 bootstage.h 中定义，但少数通过传递 BOOTSTAGE_ID_ALLOC 可以使用额外的“用户”ID作为身份证。调用 show_boot_progress() 也会生成日志条目，但这些不会有名字。
+        
+    <br>
+    
+    <!-- 2.网页布局：块在一行排列 -->
+    <div class="div three">three</div>
+    <div class="div four">four</div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 对象声明语法1:
+        let objectName1 = {
+            uname: 'William',
+            age: 18,
+            gender: 'Man',
+            'saying-s': 'hello',
+        };
+
+        // 对象声明语法2:
+        let objectName2 = new Object();
+
+        // ‘查’ 跟java c++一样
+        console.log(objectName1.gender);
+
+        // ‘查’的另一种方法，对象名['属性名']
+        console.log(objectName1['saying-s']);
+
+        // ‘增’ 有点不一样
+        objectName2.UNAME = 'Jennifer';
+        console.log(objectName2.UNAME);
+
+        //null是一个对象。
+        console.log(typeof(null));
+    </script>
+</body>
+</html>

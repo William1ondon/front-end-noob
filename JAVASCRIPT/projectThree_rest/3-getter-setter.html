@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // setter 是一个用于设置属性值的方法，它也被定义为对象的属性，并使用 set 关键字进行声明。当为该属性赋值时，setter 方法会被自动调用，并对属性进行相应的操作。
+        class Circle {
+            constructor(radius) {
+                this._radius = radius; // 使用下划线前缀表示私有属性
+            }
+
+            // getter 是一个用于获取属性值的方法，它被定义为对象的属性，并使用 get 关键字进行声明。当访问该属性时，getter 方法会被自动调用，并返回相应的值。
+            get radius() {
+                return this._radius;
+            }
+
+            // setter 是一个用于设置属性值的方法，它也被定义为对象的属性，并使用 set 关键字进行声明。当为该属性赋值时，setter 方法会被自动调用，并对属性进行相应的操作。
+            //许多程序员在属性名称前使用下划线字符 _ 将 getter/setter 与实际属性分开
+            set radius(value) {
+                if (value > 0) {
+                this._radius = value;
+                } else {
+                console.log('Radius must be a positive number.');
+                }
+            }
+
+            get area() {
+                return Math.PI * this._radius * this._radius;
+            }
+        }
+
+        const circle = new Circle(3);
+        console.log(circle.radius);// 3
+
+        circle.radius = 6;
+        console.log(circle.radius);// 6
+
+        circle.radius = -1;// Radius must be a positive number
+
+        console.log(circle.area);// 113.09733552923255
+    </script>
+</body>
+</html>

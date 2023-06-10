@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        forEach :   遍历但不返回数组
+        filter  ：  返回筛选过的满足条件的新数组
+        map     ：  返回经过处理之后的新数组
+        reduce  ：  返回累计处理的结果
+        concat  :   合并两个数组，返回新数组
+
+        🐩🐩🐶🐩.every(🐩)  => false
+        🐩🐩🐶🐩.some(🐩)  => true
+        🐩🐩🐩🐩.fill(🐶, 1)  => 🐩🐶🐶🐶
+        🐩🐩🐶🐩.findIndex(el => el === 🐶)  => 2
+        🐩🐩🐶🐩.find(🐶)  => 🐶
+        */
+       
+       // reduce基本语法：
+       // arr.reduce(function(上一次值， 当前值){}, 初始值)
+        const arr = [1,2,4,5,6,7,8];
+        // 1、没有初始值
+        let result = arr.reduce(function(prev, current){
+            return prev+current;
+        });
+        console.log(result);
+
+        // 有初始值，初始值为第一次循环的prev值
+        result = arr.reduce(function(prev, current){
+            return prev+current;
+        }, result);
+        console.log(result);
+
+        // 箭头函数写法
+        result = arr.reduce((prev, current) => prev+current , result);
+        console.log(result);
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // in 是一个运算符，用于检查对象是否包含指定的属性。
+        // 若属性存在且值为null或undefined，运算符仍然会返回true
+
+        // 第一种情况：用于检查对象自身是否包含指定的属性
+        const obj = { foo: 'bar', baz: 'qux' };
+        console.log('foo' in obj); // true
+        console.log('qux' in obj); // false
+
+
+        // 第二种情况：检测对象及其原型链上是否包含指定的属性
+        function Person(){
+            this.name  = 'William';
+        }
+        Person.prototype.age = 24;
+        let a = new Person();
+        console.log('age' in a);// true
+        console.log('name' in a);// true
+    </script>
+</body>
+</html>

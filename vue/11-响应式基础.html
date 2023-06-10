@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <div id="app">{{message}}</div>
+
+    <script>
+        const { createApp } = Vue;
+
+        createApp({
+            /*
+            Vue将在创建新组件实例的时候调用此函数，并将函数返回的对象用响应式系统进行包装。
+            此对象的所有顶层属性都会被代理到组件实例（即方法和生命周期钩子的this）上
+
+            Vue在组件实例上暴露的内置API使用$作为前缀。它同时也为内部属性保留 _ 前缀。
+            因此，应该避免在顶层data上使用任何以这些字符作前缀的属性
+            */
+            data(){
+                return {
+                    message : "Hello Vue!"
+                }
+            }
+        }).mount('#app')
+
+        // 在 Vue 中，状态都是默认深层响应式的。这意味着即使在更改深层次的对象或数组，你的改动也能被检测到。
+        // export default {
+        // data() {
+        //     return {
+        //     obj: {
+        //         nested: { count: 0 },
+        //         arr: ['foo', 'bar']
+        //     }
+        //     }
+        // },
+        // methods: {
+        //     mutateDeeply() {
+        //     // 以下都会按照期望工作
+        //     this.obj.nested.count++
+        //     this.obj.arr.push('baz')
+        //     }
+        // }
+        // }
+    </script>
+</body>
+</html>

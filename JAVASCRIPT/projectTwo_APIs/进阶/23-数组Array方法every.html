@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const arr = [
+            {
+                name:'小米',
+                price:1999,
+            },
+            {
+                name:'华为',
+                price:3999,
+            },
+            {
+                name:'小米',
+                price:19299,
+            },{
+                name:'小米',
+                price:1399,
+            },{
+                name:'小米',
+                price:19599,
+            },{
+                name:'小米',
+                price:1912399,
+            },
+            {
+                name:'华为',
+                price:13999,
+            },{
+                name:'华为',
+                price:23999,
+            },
+        ]
+
+        // 是否都大于1000
+        function thousandMore(elem){
+            return elem.price > 1000;
+        }
+
+        console.log(arr.every(thousandMore));
+    </script>
+</body>
+</html>

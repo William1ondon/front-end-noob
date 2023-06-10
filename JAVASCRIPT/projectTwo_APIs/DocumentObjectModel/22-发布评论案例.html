@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            position: relative;
+            width: 300px;
+            height: 200px;
+        }
+
+        div input {
+            float: left;
+            width: 250px;
+            height: 100px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        button {
+            float: right;
+            width: 42px;
+            height: 100px;
+            border-radius: 5px;
+            vertical-align: middle;
+            border: none;
+        }
+
+        p {
+            position: absolute;
+            right: 50px;
+            bottom: 60px;
+        }
+
+        div input, button{
+            box-sizing: border-box;
+            box-shadow: none;
+            border: 1px solid;
+        }
+
+        .eee {
+            width: 300px;
+            transition: all 1s;
+        }
+
+        .eee:focus {
+            width: 600px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="text" name="" id="">
+        <button>提交</button>
+        <p class="lastNum">0/200</p>
+
+        <script>
+            const input = document.querySelector('[type=text]');
+            const num = document.querySelector('.lastNum');
+            input.addEventListener('input', function(){
+                num.innerHTML = `${input.value.length}/200`;
+            });
+        </script>
+    </div>
+
+    <!-- 点击变长 -->
+    <input type="text" class="eee">
+</body>
+</html>

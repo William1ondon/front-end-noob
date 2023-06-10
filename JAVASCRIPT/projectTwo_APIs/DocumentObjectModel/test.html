@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Get element position relative to HTML</title>
+</head>
+<style>
+    div {
+    width: 300px;
+    height: 300px;
+    margin: 100px;
+    padding: 10px;
+    border: 10px solid yellow;
+    background-color: skyblue;}
+</style>
+<body>
+	<form>
+        <button>123</button>
+    </form>
+	<script>
+		const form = document.querySelector('form');
+        form.addEventListener('submit', function(e){
+            e.preventDefault();
+            console.log('hihihi');
+        })
+	</script>
+</body>
+</html>

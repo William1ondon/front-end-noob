@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 300px;
+            height: 300px;
+            background-color: skyblue;
+        }
+
+        #borderID {
+            border: 1px solid lightblue;
+            box-shadow: -2px -2px 2px 2px skyblue;
+            box-shadow: 2px 2px 2px 2px skyblue;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <div id="app1">
+        <button v-bind:disabled="isdisabled">{{buttonText}}</button>
+    </div>
+
+    <div id="app2">
+        <!-- 双引号中的是绑定应用的数据，:是用来做隔开的标识的，disabled则是一个可选的参数 -->
+        <button v-bind:disabled="isdisabled">{{buttonText}}</button>
+    </div>
+
+    <div id="app3">
+        <div v-bind="mutiAttribute">{{divText}}</div>
+    </div>
+    <script>
+        /*
+        v-bind：
+            一个指令，通常用于将数据绑定到HTML标签的属性上，使用v-bind能够动态地修改HTML标签的属性，从而改变其展示效果。
+
+        基本语法：
+            v-bind:属性名="数据绑定表达式"
+        简写版：
+            ：属性名="数据绑定表达式"
+        */
+       const {createApp} = Vue;
+       createApp({
+        data(){
+            return {
+                buttonText : 'BUTTON',
+                // 布尔型attribute依据true/false值来决定attribute是否应该存在于该元素上
+                // 当isdisabled为真值或''时，元素会包含disabled这个attribute
+                // 在这里表现为<button disabled="">BUTTON</button>
+                isdisabled : true
+            };
+        }
+       }).mount('#app1')
+
+       createApp({
+        data(){
+            return {
+                buttonText : 'BUTTON',
+                // 布尔型attribute依据true/false值来决定attribute是否应该存在于该元素上
+                // 在这里为<button>BUTTON</button>
+                isdisabled : false
+            };
+        }
+       }).mount('#app2')
+
+        // 动态绑定多个值
+        createApp({
+        data(){
+            return {
+                divText : 'This is a DIV with mutiple attribute',
+                // 布尔型attribute依据true/false值来决定attribute是否应该存在于该元素上
+                // 在这里为<button>BUTTON</button>
+                mutiAttribute : {
+                    id : 'borderID',
+                    class : 'box',
+                }
+            };
+        }
+       }).mount('#app3')
+    </script>
+</body>
+</html>

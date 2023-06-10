@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            /* 打开内减！！ */
+            box-sizing: border-box;
+        }
+
+        div {
+            width: 380px;
+            height: 300px;
+            background-color:skyblue;
+            border: 1px solid #ccc;
+            margin: 60px auto;
+            padding: 42px 30px 0;
+        }
+
+        div h2 {
+            border-bottom: 1px solid #ccc;
+
+            /* 行高一倍，就是字号的大小,设置完这个后border那条线会跟文字贴在一起 */
+            line-height: 1;
+
+            /* 这时候再调整padding-bottom，以使得那条线符合期望值 */
+            padding-bottom: 6px;
+        }
+
+        /* 我的作品
+        div p {
+            margin: 10px auto;
+            border-bottom: 1px dashed #ccc;
+            line-height: 1;
+            padding-bottom: 6px;
+        } 
+        */
+
+        div li {
+            height: 30px;
+            /* 去掉列表的符号(链接前面那个点) */
+            list-style: none;
+            padding-left: 28px;
+            border-bottom: 1px dashed #ccc;
+        }
+
+        div a {
+            color:#666;
+            font-size: 20px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h2>最新文章</h2>
+        <!-- 我的作品
+        <p class="text-style">广州招聘网页设计，平面设计，php</p>
+        <p class="text-style">体验javascript的魅力</p>
+        <p class="text-style">jquery世界来临</p>
+        <p class="text-style">网页设计师的梦想</p>
+        <p class="text-style">jquery的链式编程是什么</p>
+        -->
+        <ul>
+            <li><a href="#">网页的各种标题</a></li>
+            <li><a href="#">网页的各种标题</a></li>
+            <li><a href="#">网页的各种标题</a></li>
+            <li><a href="#">网页的各种标题</a></li>
+            <li><a href="#">网页的各种标题</a></li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .father {
+            width: 600px;
+            height: 300px;
+            background-color: wheat;
+            display: flex;
+        }
+
+        /* 在父元素内容的最前添加一个伪元素 */
+        .father::before {
+            /* content必须添加，否则不生效 */
+            content: "最强";
+            color: steelblue;
+            width: 100px;
+            height: 100px;
+            background-color:saddlebrown;
+            /* 默认情况是一个行内标签 */
+            display: inline-block;
+        }
+
+        /* 在父元素内容的最后添加一个伪元素 */
+        .father::after {
+            content: '';
+            display: block;
+            /* 设置图片一定一定要加宽高！ */
+            width: 100px;
+            height: 100px;
+            background-image: url(./60.jpg);
+            background-size: 100% 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- 伪元素：通过css创建标签
+    装饰性的不重要的可用 -->
+    
+    <!-- 伪元素得依靠一个父元素 -->
+    <view class="father">
+        AI
+    </view>
+</body>
+</html>

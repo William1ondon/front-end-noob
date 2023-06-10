@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>BUTTON</button>
+    <script>
+        const btn = document.querySelector('button');
+        // DOM L0 事件源.on事件 = function(){}
+        //会被覆盖
+        btn.onclick = function(){
+            alert('这是第一个alert');
+        }
+        btn.onclick = function(){
+            alert('这是第二个alert');
+        };
+
+        // DOM L2 事件源。addEventListener(事件， 事件处理函数)
+        //不会被覆盖，而且还能做 冒泡/捕获
+    </script>
+</body>
+</html>

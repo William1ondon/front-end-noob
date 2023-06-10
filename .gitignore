@@ -11,3 +11,7 @@
 *.mov
 *.mkv
 *.wmv
+
+## ignore folder
+
+vue/13-有状态方法/myproject0

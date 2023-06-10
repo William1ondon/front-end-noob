@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>这是一个div标签</div>
+    <div id="box">这是一个id是box的div标签</div>
+    <div class="noob">这是一个class name是noob的div标签</div>
+    <ul>
+        <li>测试1</li>
+        <li>测试2</li>
+        <li>测试3</li>
+    </ul>
+    <script>
+        // 获取匹配的第一个元素,一个HTMLElement对象
+        const div = document.querySelector('div');
+        //专用来打印对象的
+        console.dir(div);//这个div就是个dom对象
+
+        const divBox = document.querySelector('#box');
+        console.dir(divBox);
+
+        //获取第一个li
+        const li = document.querySelector('ul li:first-child');
+        console.dir(li);
+
+        //获取匹配的多个元素，返回匹配的 NodeList 对象集合
+        /* NodeList是一个伪数组：
+        ·有长度有索引号的数组
+        ·但没有pop() push()等数组方法
+        想要得到里面的每一个对象，则需要遍历（for）的方式获得
+        */
+        const lis = document.querySelectorAll('ul li');
+        console.dir(lis);
+        for(let i = 0; i < lis.length; i++){
+            console.log(lis[i]);
+        }
+
+        // 其他获取DOM元素方法
+        //根据id
+        let id = document.getElementById('box');
+        console.dir(id);
+        //根据标签，获取页面所有的
+        let tag = document.getElementsByTagName('div');
+        console.dir(tag);
+        // 根据类名，获取所有类名为
+        let className = document.getElementsByClassName('noob');
+        console.dir(className);
+    </script>
+</body>
+</html>

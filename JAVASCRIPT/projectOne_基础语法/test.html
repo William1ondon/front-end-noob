@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .histogram {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        height: 200px;
+        width: 400px;
+        background-color: lightgray;
+        }
+        .bar {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 50px;
+            background-color:violet;
+        /* margin-right: 10px; */
+        }
+        .bar:nth-child(2n) {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color:wheat;
+        }
+        .bar:nth-child(3n) {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color:steelblue;
+        }
+
+        span {
+            margin-top: -20px;
+        }
+
+        h4 {
+          margin-bottom: -60px;  
+        }
+    </style>
+</head>
+<body>
+  <!-- <div class="histogram">
+    <div class="bar" style="height: 100px;">
+        <span>100</span>
+        <h4>第一季度</h4>
+    </div>
+    <div class="bar" style="height: 80px;">
+        <span>80</span>
+        <h4>第二季度</h4>
+    </div>
+    <div class="bar" style="height: 120px;">
+        <span>120</span>
+        <h4>第三季度</h4>
+    </div>
+    <div class="bar" style="height: 130px;">
+        <span>130</span>
+        <h4>第四季度</h4>
+    </div>
+  </div> -->
+
+  <script>
+    let arr = [];
+    let tempVal;
+    for(let i = 1; i <= 4; i++){
+        arr.push(prompt(`请输入第${i}季度数据`));
+    }
+    document.write(`<div class="histogram">`);
+
+    for(let i = 0; i < 4; i++ ){
+        tempVal = arr.shift();
+        document.write(`
+            <div class="bar" style="height: ${Number(tempVal)}px;">
+                <span>${tempVal}</span>
+                <h4>第${i+1}季度</h4>
+            </div>
+        `);
+    }
+
+    document.write(`</div>`);
+  </script>
+</body>
+</html>

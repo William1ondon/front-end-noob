@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="demo"></h1>
+    <script>
+        /*
+        async 使函数返回Promise
+        await 使函数等待Promise
+        */
+       function myDisplayer(some){
+        document.getElementById("demo").innerHTML = some;
+       }
+
+        async function myfunction(){
+            return 'HELLO';// 相当于返回Promise.mySolve('HELLO');
+        }
+
+        myfunction().then(
+            function(value){myDisplayer(value)},
+            function(error){myDisplayer(error)}
+        )
+    </script>
+</body>
+</html>

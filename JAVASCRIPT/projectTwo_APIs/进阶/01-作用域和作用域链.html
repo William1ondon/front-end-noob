@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 函数作用域分为 1、全局作用域 2、局部作用域
+                局部作用域又分为 1、函数作用域 2、块作用域 */
+        /* 这里只讲块作用域：
+            使用{}包裹的代码块成为代码块，代码块内部声明的变量 外部将【有可能】无法被访问
+            这个【有可能】是因为var不受限制，如下例子： */
+        for(var t = 0; t < 8; t++){}
+        console.log(t);// 8
+
+        /* 
+        作用域链 本质上是底层的变量查找机制
+            ·在函数被执行时，会优先在当前函数作用域中查找变量
+            ·如果当前作用域查找不到则会依次逐级查找父级作用域直到全局作用域
+        */
+    </script>
+</body>
+</html>

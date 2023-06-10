@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .top {
+            height: 40px;
+        }
+
+        .header {
+            width: 1226px;
+            height: 100px;
+            background-color:salmon;
+            margin: 0 auto;
+        }
+
+        .content {
+            width: 1226px;
+            height: 460px;
+
+            /* 这个是随便的，因为颜色会被后面的给盖住 */
+            background-color:aliceblue;
+            margin: 0 auto;
+        }
+
+        .left {
+            width: 234px;
+            height: 460px;
+            background-color: tomato;
+            float: left;
+        }
+
+        .right {
+            width: 992px;
+            height: 460px;
+            background-color: slateblue;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="top"></div>
+    <div class="header">头部</div>
+    <div class="content">
+        <div class="left">LEFT</div>
+        <div class="right">RIGHT</div>
+    </div>
+</body>
+</html>

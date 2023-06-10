@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <input type="text" name="username">
+        <input type="password" name="pwd">
+        <button>submit</button>
+    </form>
+    <a href="#/my">我的</a>
+    <a href="#/friend">好友</a>
+    <a href="#/download">下载</a>
+    <button class="reload">强制刷新</button>
+    <!-- <div class="jump">5秒后自动跳转</div> -->
+    <script>
+        // 5秒后跳转页面
+        // let time = 5;
+        // let timer = setInterval(function(){
+        //     document.querySelector('.jump').innerHTML = `${--time}秒后自动跳转`;
+        // }, 1000);
+        // setTimeout(function(){
+        //     clearInterval(timer);
+        //     window.location.href = 'http://www.baidu.com';
+        // }, 5050);
+        // document.querySelector('.jump').addEventListener('click', function(){
+        //     clearInterval(timer);
+        //     window.location.href = 'http://www.baidu.com';
+        // });
+
+        // 地址对象
+        document.body.addEventListener('click', function(){
+            console.log(location.search);// 拿到地址？后面的部分[Log] username=dada&pwd=adada
+            console.log(location.hash);// 拿到哈希值，就是#后面的东西，后期vue路由的铺垫，经常用于不刷新页面而显示不同的页面
+        });
+        document.querySelector('.reload').addEventListener('click', function(){
+            location.reload(true);
+        });
+    </script>
+</body>
+</html>

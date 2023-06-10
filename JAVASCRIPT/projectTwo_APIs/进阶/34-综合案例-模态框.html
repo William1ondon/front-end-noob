@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            position: relative;
+            margin: 280px auto;
+            width: 280px;
+            height: 80px;
+            border: 1px solid rgba(255, 255, 255, 0);
+            box-shadow: 2px 2px 4px rgba(200, 200, 200, 0.5),-2px -2px 4px rgba(200, 200, 200, 0.5);
+            text-align: center;
+        }
+
+        .tips {
+            position: absolute;
+            top: 6px;
+            left: 6px;
+        }
+
+        .close {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+        }
+
+        .text {
+            margin: 40px 0;
+        }
+    </style>
+</head>
+<body>
+    <button class="box1">删除</button>
+    <button class="box2">登陆</button>
+    <script>
+        function box(tips, text){
+            this.tips = tips;
+            this.text = text;
+            this.divBox = document.createElement('div');
+            this.divBox.className = 'box';
+            this.divBox.innerHTML = `
+                <div class="tips">${this.tips?this.tips:'tips'}</div>
+                <div class="close">X</div>
+                <div class="text">${this.text?this.text:'tips'}</div>
+                `;
+        };
+
+        document.querySelector('.box2').addEventListener('click', () => {
+            if(!document.querySelector('.box')){
+                const tb = new box('友情提示','您还没有注册');
+                tb.open();
+            }
+        });
+
+        document.querySelector('.box1').addEventListener('click', () => {
+            if(!document.querySelector('.box')){
+                const tb = new box('温馨提示','您没有权限删除');
+                tb.open();
+            }
+        });
+
+        // 箭头函数里的this是上一级的this，所以这里不能用
+        box.prototype.open = function() {
+            if(!document.querySelector('.box')){
+                document.body.appendChild(this.divBox);
+                document.querySelector('.close').addEventListener('click', () => {
+                    // 箭头函数里的this是上一级的this，所以这里要用
+                    this.close();
+                });
+            }
+        }
+        box.prototype.close = function() {
+            if(document.querySelector('.box')){
+               document.body.removeChild(this.divBox); 
+            }
+        }
+    </script>
+</body>
+</html>

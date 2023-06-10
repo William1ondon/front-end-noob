@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 一般匿名函数
+        // const fn = function(x){
+        //     console.log(x);
+        // }
+        // fn(1);
+
+        // 箭头函数
+        const fn = (x) => {
+            console.log(x);
+        }
+        fn(3);
+
+        // 只有一个括号的时候可以省略(),只有一行代码的时候可以省略{}
+        const fn1 = x => console.log(x);
+        fn1(6);
+
+        // 只有一行代码且此行代码为return的时候连return都能省略
+        const fn2 = x => x+x;
+        console.log(fn2(8));
+
+        // 例1，阻止默认事件：
+        // const form = document.querySelector('form');
+        // form.addEventListener('click', ev => ev.preventDefault());
+
+        // 例2，直接返回一个对象，小括号是为了防止混淆:
+        const fn3 = (uname) => ({name:uname});
+        console.log(fn3('William'));
+    </script>
+</body>
+</html>

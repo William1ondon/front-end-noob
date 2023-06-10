@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            /* 生成font-size： fsz */
+            font-size: 10px;
+
+            /* fw700 */
+            font-weight: 700;
+
+            /* w70px */
+            width: 70px;
+
+            /* bgc#fff */
+            background-color: #fff;
+
+            /* lh26px */
+            line-height: 26px;
+
+            /* 宽度300，高度200，背景#fff w300+h200+bgc#fff */
+            width: 300px;
+            height: 200px;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <!-- 最简单的就是div+tab键 -->
+    <div></div>
+
+    <!-- 生成div，带类名box: .box -->
+    <div class="box"></div>
+
+    <!-- 生成p标签，带类名box: p.box -->
+    <p class="box"></p>
+
+    <!-- 生成p标签，带IDbox: p#box -->
+    <p id="box"></p>
+
+    <!-- 生成p标签，带类box和IDone: p.box#one -->
+    <p class="box" id="one"></p>
+
+    <!-- 生成div标签和同级p标签: div+p -->
+    <div></div>
+    <p></p>
+
+    <!-- 生成父级div标签和子级p标签: div>p -->
+    <div>
+        <p></p>
+    </div>
+    <ul>
+        <li></li>
+    </ul>
+
+    <!-- 生成无需列表ul带三个li: ul>li*3 -->
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+    <!-- ul带3li，li里面带文字aaa: ul>li{aaa}*3 -->
+    <ul>
+        <li>111</li>
+        <li>111</li>
+        <li>111</li>
+    </ul>
+
+    <!-- ul带3li，分别带a、b、c: ul>li{$}*3 -->
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+
+    <!-- ul带3li，分别带one、two、three: ul>li{one}li{two}li{three}-->
+    <ul>
+        <li>one</li>
+        <li>two</li>
+        <li>three</li>
+    </ul>
+</body>
+</html>

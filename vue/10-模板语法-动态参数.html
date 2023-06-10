@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <!-- 参数也可以使用一个JavaScript表达式，需要包含在一对[]内 -->
+    <div id="app">
+        <!-- DOM内嵌模板的限制：如果数据工工厂函数返回的数据对象中的attributeName是“attributeName”的话，浏览器会报找数据对象中找不到“attributename”,说明这里的大写N被按小写去找了 -->
+        <!-- <a v-bind:[attributeName]="url">{{urlTitle}}</a> -->
+        <my-component></my-component>
+    </div>
+    <script>
+        const {createApp} = Vue;
+        createApp({
+            components: {
+                /*
+                非DOM内嵌模板：可以使用内嵌模板 (Inline Template) 的方式来定义组件的模板。内嵌模板是指将模板直接写在组件的选项中，而不是将模板放在独立的 .vue 单文件中或者通过 <template> 标签引入。
+                */
+                'my-component': {
+                    template: `
+                    <div>
+                        <h1>{{ title }}</h1>
+                        <p>{{ message }}</p>
+                        <a v-bind:[attributeName]="url">{{urlTitle}}</a>
+                    </div>
+                    `,
+                    data(){
+                        return {
+                            title: 'Hello Vue!',
+                            message: 'This is an inline template',
+                            attributeName : 'href',
+                            url : 'https://www.baidu.com',
+                            urlTitle : '百度一下，你就忘掉'
+                        };
+                    }
+                }
+            }
+        }).mount('#app');
+    </script>
+
+    <!-- 动态参数 值 的限制：
+    动态参数中表达式的值应当是一个字符串，或者是null。
+    特殊值null意为显式移除该绑定。
+    其他非字符串的值会触发警告
+    -->
+    <div id="app1">
+        <a v-bind:[attributeName]="url">{{urlTitle}}</a>
+    </div>
+    <script>
+        createApp({
+            data(){
+                return {
+                    attributename : null,
+                    url : 'https://www.baidu.com',
+                    urlTitle : '百度一下，你就忘掉'
+                };
+            }
+        }).mount('#app1');
+    </script>
+
+<div id="app2">
+    <form v-on:submit.prevent="onSubmit">
+        <button>{{urlTitle}}</button>
+    </form>
+</div>
+<script>
+    createApp({
+        data(){
+            return {
+                urlTitle : 'Submit Form',
+                flag : true,
+            };
+        },
+        methods: {
+            onSubmit(){
+                if(this.flag)
+                    document.querySelector('form').submit();
+            }
+        }
+    }).mount('#app2');
+</script>
+</body>
+</html>

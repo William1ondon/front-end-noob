@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* css书写：1. 定位 / 浮动 /display ； 2. 盒子模型 ； 3. 文字属性 */
+        .box {
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            /* 绝对定位特点：
+            1.先找已经定位的父级，如果有这样的父级就以这个父级为参照物进行定位
+            若有父级，但父级没有定位，则以浏览器窗口为参照进行定位
+            2.脱标，不占位
+            3.改变标签的显示模式特点：具有行内块特点（在一行共存，宽高可设置） */
+
+            width: 200px;
+            height: 200px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body>
+    <p>TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest</p>
+    <p>TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest</p>
+    <p>TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest</p>
+    <p>TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest</p>
+    <p>TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest</p>
+    <p>TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest</p>
+    <div class="box">box</div>
+    <p>TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest</p>
+    <p>TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest</p>
+    <p>TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest</p>
+    <p>TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest</p>
+    <p>TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest</p>
+    <p>TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest</p>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        构造函数：
+            是一种特殊的函数，主要用来初始化对象
+            * 使用场景：常规的{...}语法只允许创建一个对象，比如创建了一个佩奇对象后，如果想继续创建乔治的对象则还需要重新写一遍。此时可以通过构造函数来快速创建多个类似的对象。
+            * 两个约定：1、它们的命名以大写字母开头。   2、它们只能由“new”操作符来执行
+        */
+       function Pig(name, age, gender){
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+       }
+
+    // 构造函数怎么创建的新对象？？⬇️
+    // new之后创建了新对象
+    // 构造函数this指向新对象
+    // 执行构造函数代码，修改this，添加新属性
+    // 返回新对象
+       const peiqi = new Pig('佩奇', 6, 'female');
+       const George = new Pig('乔治', 3, 'male');
+       console.log(peiqi);
+       console.log(George);
+    </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 正则表达式
+    作用：1、匹配 2、替换 3、提取 -->
+    <script>
+        // const str = '我在学习前端，有志者事竟成';
+        // // 1、定义规则
+        // const regular = /前端/;
+
+        // // 2、检查方法(是否匹配)
+        // console.log(regular.test(str));// 返回true/false
+        // console.log(regular.exec(str));// 返回一个数组 ["前端"] (1)，没找到就返回null
+
+        /* 元字符，特殊字符，比如[a-z]
+        分为三类：
+        1、边界符（表示位置，开头或结尾，必须用什么开头，用什么结尾）
+            ^：表示匹配行首的文本（以谁开始）
+            $：表示匹配行尾的文本（以谁结束）
+        2、量词（表示重复次数）
+        3、字符类（比如\d表示0～9）
+        */
+
+        // 1.边界符测试  
+       /* console.log(/哈/.test('二哈')); // true
+       console.log(/^哈/.test('二哈')); //false
+       console.log(/哈$/.test('二哈')); //true
+       console.log(/哈$/.test('二哈二')); //false
+       console.log(/^哈$/.test('哈哈')); */// 表示精确匹配，只能有一个‘哈’，所以为false
+
+       // 2、量词测试
+        /* console.log(/^哈*$/.test('哈哈哈'));// true，允许>=0次
+        console.log(/^哈*$/.test(''));// true，允许>=0次
+
+        console.log(/^哈+$/.test(''));// false，允许>=1次
+        console.log(/^哈+$/.test('哈哈哈哈哈哈'));// true，允许>=1次
+
+        console.log(/^哈?$/.test(''));// true，0或1次
+        console.log(/^哈?$/.test('哈'));// true，0或1次
+        console.log(/^哈?$/.test('哈哈哈哈哈哈'));// false，0或1次
+
+        console.log('-----------------------');
+
+        console.log(/^哈{3}$/.test('哈哈哈'));// {n},n是几就只能出现几次，所以此为true
+        console.log(/^哈{3}$/.test('哈哈哈哈'));// false
+
+        console.log(/^哈{3,}$/.test('哈哈哈'));// {n,},n是几就只能出现几次或更多，所以此为true 【逗号旁边不能有空格】
+        console.log(/^哈{3,}$/.test('哈哈'));// false
+        console.log(/^哈{3,}$/.test('哈哈哈哈哈哈哈'));// true
+
+        console.log(/^哈{3,6}$/.test('哈哈哈哈哈'));// {m,n},只能出现m到n次，true 【逗号旁边不能有空格】
+        console.log(/^哈{3,6}$/.test('哈哈哈哈哈哈哈哈'));// false
+        console.log(/^哈{3,6}$/.test('哈哈'));*/// false
+
+        // 3、字符类测试
+        /*console.log(/[abc]/.test('andy')); // []匹配字符集合，字符串只要包含中括号中任意一字符都返回true
+        console.log(/^[abc]$/.test('ab')); // 精确匹配，abc任一个，所以这个返回false
+        console.log(/^[abc]{2}$/.test('ab'));// 允许匹配两次中括号中字符，true
+        
+        console.log('---------------');
+
+        console.log(/^[a-z]$/.test('a'));// a到z任一个都行（小写）， true
+        console.log(/^[A-Z]$/.test('A'));// A到Z任一个都行（大写）， true
+        console.log(/^[0-9]$/.test('1'));// 0到9任一个都行（大写）， true
+        console.log(/^[0-9a-zA-Z]$/.test('1'));// a到z，A到Z，0到9任一个都行， true
+        console.log(/^[0-9a-zA-Z]{6}$/.test('1daw67'));// a到z，A到Z，0到9任6个都行， true
+        console.log('---------------');
+
+        console.log(/^[^a-z]$/.test('a'));// 中括号里面的^表示反符号，在这里表示出了小写a到z意外的字符,false
+        console.log(/^[^a-zA-Z0-9]$/.test(','));//  除了英文和数字字符都ok，true
+
+        // 检验qq号，qq号从10000开始
+        console.log(/^[1-9][0-9]{4,}/.test('1959479486'));*/ // true
+
+        // 4、预定义类
+        /*
+        \d : 相当于[0-9]
+        \D : 相当于[^0-9],即0-9以外的字符
+        \w : 相当于[A-Za-z0-9]
+        \W : 相当于[^A-Za-z0-9_]，即除大小写英文、数字、下划线外的字符
+        \s : 相当于[\t\r\n\v\f]，匹配空格、换行符、制表符等
+        \S : 相当于[^\t\r\n\v\f]，上一个反过来的
+        */
+
+        // 5、修饰符
+        /*
+        /表达式/修饰符
+        i是ignore的缩写，正则匹配时不区分大小写
+        g是global的缩写，匹配所有满足正则表达式的结果
+        */
+       console.log(/^java$/i.test('JAVA'));
+
+        // 6、替换（方法）  字符串.replace(/正则表达式/, '替换的文本');
+        let str = 'HI,everyone,I am Tony,Tony is Smart,TONY is strong';
+        const ret = str.replace(/Tony/, 'William');
+        const ret1 = str.replace(/Tony/g,'William');
+        const ret2 = str.replace(/Tony|TONY/g,'William');//或者直接ig
+        console.log(ret + ' ' + ret1 + ' ' + ret2);
+    </script>
+</body>
+</html>

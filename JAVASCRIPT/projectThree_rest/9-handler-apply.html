@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+        handler.apply
+            ·语法：
+                var p = new Proxy(target, {
+                    apply: function(target, thisArg, argumentsList){}
+                })
+                ^target: 目标对象(函数)
+                ^thisArg: 被调用的上下文对象
+                ^argmentList: 被调用时的参数数组
+                apply方法可以返回任何值
+            ·作用：handler.apply用于拦截函数的调用 
+        */
+        function sum(a, b){
+            return a+b;
+        }
+
+        const handler = {
+            apply: function(target, thisArg, argmentList){
+                return argmentList.reduce((accumulator, currentValue) => accumulator*currentValue);
+            }
+        }
+
+        const proxy = new Proxy(sum, handler);
+        console.log(sum(3, 6));// 9
+        console.log(proxy(3, 6));// 18
+
+        // *** 特殊用法：使用apply来链接构造器 ***
+        function parent(name){
+            this.name = name;
+            this.dance= function(){console.log(`${name} is dancing!`);};
+        }
+        parent.prototype.sayHello = function(){
+            console.log(`Baby ${this.name}: Hello!`);
+        }
+        function child(name, age) {
+            // 现在我要实现new child的时候可以同时传递name和age,即new child(name, age)
+            // 构造函数里面的this指向示例
+            let objPR = Object.create(parent.prototype);
+            parent.apply(this, [name]);
+
+            return objPR;
+        }
+        const william = new child('William', 3);
+        console.log(william);//[Log] child {name: "William", dance: function, age: 3}
+        //william.sayHello();// 原型链上的方法不会被继承：[Error] (In 'william.sayHello()', 'william.sayHello' is undefined)
+
+    </script>
+</body>
+</html>

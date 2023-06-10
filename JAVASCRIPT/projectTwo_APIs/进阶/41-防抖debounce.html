@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            display: flex;
+            width: 300px;
+            height: 300px;
+            background-color: skyblue;
+            justify-content: center;
+            align-items: center;
+            font-size: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <script src="./lodash.min.js"></script>
+    <script>
+        /*
+        防抖：连续时间内频繁触发事件的话，只执行最后一起，跟硬件防抖一个道理
+            功能：减轻处理压力
+            使用场景：
+                ·搜索框搜索输入，只需用户最后一次输入完，再发送请求
+                ·手机号、邮箱验证输入检测
+            
+            防抖实现：
+                ·_.debounce(func, [wait=0], [option=])
+                ·手动实现防抖
+        */
+       let i = 1;
+        const box = document.querySelector('.box');
+        let timer = -1;
+        function mouseMove(){
+            if(timer !== -1) clearTimeout(timer);
+            timer = setTimeout(function(){
+                box.innerHTML = i++;//不加防抖的话，鼠标每移动一像素都会变化
+                timer = -1;
+            },500);
+            }
+        // 该函数会从上一次被调用后，延迟 wait 毫秒后调用 func 方法。 
+        // box.addEventListener('mousemove', _.debounce(mouseMove, 500, new Object({leading:true,trailing:true})));
+
+        // 手写防抖函数
+        box.addEventListener('mousemove', mouseMove);
+    </script>
+</body>
+</html>

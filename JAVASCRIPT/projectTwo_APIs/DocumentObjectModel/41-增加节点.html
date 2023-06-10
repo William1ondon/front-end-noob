@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>第1个</li>
+        <li>第2个</li>
+        <li>第3个</li>
+        <li>第4个</li>
+        <li>第5个</li>
+        <li>第6个</li>
+    </ul>
+    <script>
+        // 创建节点
+        const newNode = document.createElement('div');
+        newNode.innerHTML = `我蛤蛤大笑`;
+        const newNode1 = document.createElement('li');
+        newNode1.innerHTML = `第7个`;
+
+        // 插入到父元素的最后
+        document.body.appendChild(newNode);
+
+        // 插入到某个子元素的前面 父元素.insertBefore(要插入的元素，在哪个元素前面)
+        document.querySelector('ul').insertBefore(newNode1, document.querySelector('ul').children[2]);
+    </script>
+</body>
+</html>

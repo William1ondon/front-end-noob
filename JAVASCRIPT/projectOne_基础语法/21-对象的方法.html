@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let objectName1 = {
+            uname:'忘了谁唱的',
+            song: function() {
+                console.log('冷冷的冰雨在脸上胡乱的拍');
+            },
+        };
+        objectName1.song();
+
+        // 增添新函数
+        objectName1.newFunction = function() {
+            console.log('查了一下发现是刘德华唱的');
+        };
+        objectName1.newFunction();
+    </script>
+</body>
+</html>

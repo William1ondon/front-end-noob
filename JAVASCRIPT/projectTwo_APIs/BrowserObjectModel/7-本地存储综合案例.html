@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .inputForm {
+            margin: 10px auto;
+            width: 1000px;
+            height: 150px;
+            text-align: center;
+        }
+
+        input {
+            appearance: none;
+            border: 1px solid rgba(211, 211, 211, 0.5);
+            border-radius: 6px;
+            margin-right: 10px;
+        }
+
+        select {
+            margin-right: 10px;
+        }
+
+        input[data-name="name"],input[data-name="age"] {
+            width: 50px;
+        }
+
+        input[data-name="salary"] {
+            width: 60px;
+        }
+
+        button[type="submit"] {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+
+            vertical-align: middle;
+            border: 1px solid rgba(211, 211, 211, 0.5);
+            border-radius: 3px;
+            width: 30px;
+            height: 16px;
+            font-size: 8px;
+            color: #ffffff;
+            background-color: skyblue;
+        }
+
+        .tableDiv {
+            margin: 10px auto;
+            width: 1000px;
+            text-align: center;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin: 0 auto;
+        }
+
+        thead {
+            background-color: skyblue;
+        }
+
+        th, td {
+            padding: 8px 20px;
+        }
+
+        tr, th, td {
+            border: 1px solid rgba(211, 211, 211, 0.5);
+        }
+
+        td[data-operation="delete"] {
+            color: skyblue;
+            cursor: pointer;
+        }
+
+        .countDiv {
+            position: relative;
+            border: 1px solid rgba(211, 211, 211, 0.5);
+            border-radius: 6px;
+            height: 28px;
+            background-color: skyblue;
+            margin: 10px auto;
+            line-height: 28px;
+        }
+
+        .countDiv p {
+            position: absolute;
+            margin: 0;
+            right: 3px;
+        }
+    </style>
+</head>
+<body>
+    <form class="inputForm">
+        <h1>新增学员</h1>
+        姓名：<input type="text" data-name="name">
+        年龄：<input type="text" data-name="age">
+        性别：<select data-name="gender">
+            <option value="男" selected>男</option>
+            <option value="女">女</option>
+        </select>
+        月薪：<input type="text" data-name="salary">
+        就业城市：<select data-name="city">
+            <option value="广州" selected>广州</option>
+            <option value="北京">北京</option>
+            <option value="深圳">深圳</option>
+            <option value="上海">上海</option>
+        </select>
+        <button type="submit">录入</button>
+    </form>
+
+    <div class="tableDiv">
+        <h1>就业榜</h1>
+        <div class="countDiv">
+            <p>共有数据0条</p>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>学号</th>
+                    <th>姓名</th>
+                    <th>年龄</th>
+                    <th>性别</th>
+                    <th>薪资</th>
+                    <th>就业城市</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody class="table_body">
+            </tbody>
+        </table>
+    </div>
+
+    <div data-operation="delete"></div>
+
+    <!-- 老师的方案 -->
+    <script>
+        const form = document.querySelector('.inputForm');
+        const items = form.querySelectorAll('[data-name]');
+        console.log(items);
+
+        const localData = localStorage.getItem('student-info');
+        const arr = localData ? JSON.parse(localData) : []; 
+        
+        // 渲染
+        function renderForm(){
+            let trArr = arr.map(function (element, index){
+                return `
+                <tr>
+                    <td>${element.id}</td>
+                    <td>${element.name}</td>
+                    <td>${element.age}</td>
+                    <td>${element.gender}</td>
+                    <td>${element.salary}</td>
+                    <td>${element.city}</td>
+                    <td data-operation="delete" data-id=${index}>删除</td>
+                </tr>
+                    `;
+            });
+            document.querySelector('.table_body').innerHTML = trArr.join('');
+            document.querySelector('.countDiv').style.width = document.querySelector('table').offsetWidth + 'px';
+        };
+        renderForm();
+
+        // 添加
+        form.addEventListener('submit', function(e){
+            e.preventDefault();
+            for(let index = 0; index < items.length; index++){
+                console.log(items[index].value);
+                if(items[index].value === ''){
+                    return alert('请完整填好表格');
+                }
+            }
+            let objTemp = {};
+            for(let index = 0; index < items.length; index++){
+                objTemp[items[index].getAttribute('data-name')] = items[index].value;
+            }
+            objTemp['id'] = arr.length ? arr[arr.length - 1].id + 1: 1;
+            arr.push(objTemp);
+            localStorage.setItem('student-info', JSON.stringify(arr));
+            renderForm();
+            this.reset();
+        });
+
+        // 删除
+        document.querySelector('.table_body').addEventListener('click', function(e){
+            if(e.target.dataset.operation === 'delete'){
+                arr.splice(e.target.dataset.id,1);
+                localStorage.setItem('student-info', JSON.stringify(arr));
+                renderForm();
+            }
+        });
+    </script>
+
+    <!-- 我的方案 -->
+    <!-- <script>
+        const nameInput = document.querySelector('[data-name="name"]');
+        const ageInput = document.querySelector('[data-name="age"]');
+        const genderInput = document.querySelector('[data-name="gender"]');
+        const salaryInput = document.querySelector('[data-name="salary"]');
+        const cityInput = document.querySelector('[data-name="city"]');
+        let tr_temp;
+
+        function clearAll(){
+            document.querySelector('.inputForm').reset();
+            render();
+        }
+
+        function renderTable() {
+            document.querySelector('.table_body').innerHTML = '';
+            document.querySelector('.countDiv p').innerHTML = `共有数据${localStorage.length}条`;
+            let keys = Object.keys(localStorage);
+            keys.sort();
+            for (let index = 0; index < keys.length; index++){
+                if(localStorage.getItem(keys[index]) !== null){
+                    console.log(localStorage.getItem(keys[index]));
+
+                    let objTemp = JSON.parse(localStorage.getItem(keys[index]));
+                    console.log(typeof(objTemp));
+                    let tdTemp = document.createElement('tr');
+                    tdTemp.innerHTML = `
+                    <td>${objTemp.id}</td>
+                    <td>${objTemp.name}</td>
+                    <td>${objTemp.age}</td>
+                    <td>${objTemp.gender}</td>
+                    <td>${objTemp.salary}</td>
+                    <td>${objTemp.city}</td>
+                    <td data-operation="delete">删除</td>
+                    `;
+                    document.querySelector('.table_body').appendChild(tdTemp);
+                }
+            }
+            document.querySelector('.countDiv').style.width = document.querySelector('table').offsetWidth + 'px';
+        };
+        renderTable();
+
+        document.querySelector('.inputForm').addEventListener('submit', function(e){
+            e.preventDefault();
+            if(nameInput.value === '' || ageInput.value === '' || salaryInput.value === ''){
+                alert('请完整输入所有内容！');
+            }else{
+                let dateTemp = new Date();
+                let object = {
+                    id : localStorage.length + 1,
+                    name : nameInput.value,
+                    age : ageInput.value,
+                    gender : genderInput.value,
+                    salary : salaryInput.value,
+                    city : cityInput.value,
+                    time : dateTemp.toLocaleDateString() + ' ' + dateTemp.toLocaleTimeString(),
+                };
+                localStorage.setItem(`${object.id}`, JSON.stringify(object));
+                renderTable();
+            }
+        });
+
+        document.querySelector('.table_body').addEventListener('click', function(e){
+            if(e.target.getAttribute('data-operation') === 'delete'){
+                localStorage.removeItem(e.target.parentNode.cells[0].innerText);
+                renderTable();
+            }
+        });
+    </script> -->
+</body>
+</html>

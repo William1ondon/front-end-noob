@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" name="" value="i9-13900k" id="">
+    <input type="checkbox" class="check">
+    <button disabled>Button</button>
+    <script>
+        // 获取元素
+        // const name = document.querySelector('input');
+        // // 获取值
+        // console.log(name.value);
+        // console.log(name.innerHTML);//innerHTML得不到表单的内容
+        // // 设置表单的值
+        // name.value = 'i9-13900ks';
+        // console.log(name.type);//text
+        // name.type = 'password';
+
+        const checkbox = document.querySelector('.check');
+        console.log(checkbox.checked);//false
+        checkbox.checked = true;
+
+        const button = document.querySelector('button');
+        button.disabled = false;//不禁用
+    </script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .inputDiv {
+            margin: 10px auto;
+            width: 1000px;
+            height: 150px;
+            text-align: center;
+        }
+
+        input {
+            appearance: none;
+            border: 1px solid rgba(211, 211, 211, 0.5);
+            border-radius: 6px;
+            margin-right: 10px;
+        }
+
+        select {
+            margin-right: 10px;
+        }
+
+        input[data-name="name"],input[data-name="age"] {
+            width: 50px;
+        }
+
+        input[data-name="salary"] {
+            width: 60px;
+        }
+
+        button[type="submit"] {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+
+            vertical-align: middle;
+            border: 1px solid rgba(211, 211, 211, 0.5);
+            border-radius: 3px;
+            width: 30px;
+            height: 16px;
+            font-size: 8px;
+            color: #ffffff;
+            background-color: skyblue;
+        }
+
+        .tableDiv {
+            margin: 10px auto;
+            width: 1000px;
+            text-align: center;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin: 0 auto;
+        }
+
+        thead {
+            background-color: skyblue;
+        }
+
+        th, td {
+            padding: 8px 20px;
+        }
+
+        tr, th, td {
+            border: 1px solid rgba(211, 211, 211, 0.5);
+        }
+
+        td[data-operation="delete"] {
+            color: skyblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="inputDiv">
+        <h1>新增学员</h1>
+        姓名：<input type="text" data-name="name">
+        年龄：<input type="text" data-name="age">
+        性别：<select data-name="gender">
+            <option value="option1" selected>男</option>
+            <option value="option2">女</option>
+        </select>
+        月薪：<input type="text" data-name="salary">
+        就业城市：<select data-name="city">
+            <option value="option1" selected>广州</option>
+            <option value="option2">北京</option>
+            <option value="option2">深圳</option>
+            <option value="option2">上海</option>
+        </select>
+        <button type="submit">录入</button>
+    </div>
+
+    <div class="tableDiv">
+        <h1>就业榜</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>学号</th>
+                    <th>姓名</th>
+                    <th>年龄</th>
+                    <th>性别</th>
+                    <th>薪资</th>
+                    <th>就业城市</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody class="table_body">
+            </tbody>
+        </table>
+    </div>
+
+    <div data-operation="delete"></div>
+
+    <script>
+        const nameInput = document.querySelector('[data-name="name"]');
+        const ageInput = document.querySelector('[data-name="age"]');
+        const genderInput = document.querySelector('[data-name="gender"]');
+        const salaryInput = document.querySelector('[data-name="salary"]');
+        const cityInput = document.querySelector('[data-name="city"]');
+        const submit = document.querySelector('[type="submit"]');
+        let tr_temp;
+
+        function clearAll(){
+            // nameInput.value = ageInput.value = salaryInput .value = '';
+            // genderInput.options[0].selected = true;
+            // genderInput.options[1].selected = false;
+            // cityInput.options[0].selected = true;
+            // for (let index = 1; index < cityInput.length; index++) {
+            //     cityInput.options[index].selected = false;
+            // }
+            document.querySelector('.inputDiv').reset();
+            render();
+        }
+
+        submit.addEventListener('click', function() {
+            console.log(cityInput.value);
+           if(nameInput.value === '' || ageInput.value === '' || salaryInput.value === ''){
+            alert('请完整输入所有内容！');
+           } else{
+            tr_temp = document.createElement('tr');
+            tr_temp.innerHTML = `
+            <td>${document.querySelector('.table_body').children.length+1}</td>
+            <td>${nameInput.value}</td>
+            <td>${ageInput.value}</td>
+            <td>${genderInput.options[genderInput.selectedIndex].text}</td>
+            <td>${salaryInput.value}</td>
+            <td>${cityInput.options[cityInput.selectedIndex].text}</td>
+            <td data-operation="delete">删除</td>
+            `;
+            document.querySelector('.table_body').appendChild(tr_temp);
+           }
+        });
+
+        document.querySelector('.table_body').addEventListener('click', function(e){
+            if(e.target.getAttribute('data-operation') === 'delete'){
+                console.log(e.target.parentNode.parentNode.removeChild(e.target.parentNode));
+            }
+        });
+    </script>
+</body>
+</html>

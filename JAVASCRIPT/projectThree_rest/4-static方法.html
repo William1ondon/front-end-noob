@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Person{
+            constructor(name, gender){
+                this.name = name;
+                this.gender = gender;
+            }
+
+            static breath(){
+                return 'I am breathing.';
+            }
+
+            static sayHi(who){
+                return who.name + ": Hi!";
+            }
+        }
+
+        // 只能在对象类上调用
+        console.log(Person.breath());
+
+        // 不能在实例对象上使用
+        const William = new Person('William', 'male');
+        // console.log(William.breath());// 报错
+
+        // 可以将对象作为参数
+        console.log(Person.sayHi(William));;
+    </script>
+</body>
+</html>

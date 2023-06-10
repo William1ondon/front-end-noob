@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .father {
+            /* 当我们给父盒子设为flex布局以后，子元素的float、clear、vertical-align属性将失效。 */
+            display: flex;
+
+            /* 设置主轴方向 */
+            flex-direction: row;
+
+            /* 设置主轴上的子元素排列方式 */
+            justify-content: space-between;
+
+            /* 设置子元素是否换行 */
+            flex-wrap: nowrap;
+
+            /* 设置侧轴（默认y轴）上的子元素排列方式 */
+            align-items: center;
+
+            /* 设置侧轴上的子元素的排列方式（多行） 配合flex-wrap使用 */
+            /* align-content: space-between; */
+
+            width: 200px;
+            height: 200px;
+            background-color: skyblue;
+        }
+
+        .son1,
+        .son2,
+        .son3 {
+            width: 100px;
+            height: 20px;
+        }
+
+        .son1 {
+            /* 定义子项目分配剩余空间，用flex来表示占多少份数。
+            默认为0，如果设置为2，相当于默认相比其他子项目，你设置的这个会占两份。 */
+            flex: 1;
+
+            /* 控制子项目自己在侧轴的排列方式 */
+            align-self: center;
+            background-color: wheat;
+        }
+
+        .son2 {
+            flex: 2;
+            align-self: stretch;
+            background-color: yellow;
+            /* 定义子项的排列顺序（前后顺序）,数值越小，排列越前，默认值第一位为0 */
+            order:  -1;
+        }
+
+        .son3 {
+            flex: 1;
+            background-color: tomato;
+        }
+    </style>
+</head>
+<body>
+    <div class="father">
+        <div class="son1"></div>
+        <div class="son2"></div>
+        <div class="son3"></div>
+    </div>
+</body>
+</html>

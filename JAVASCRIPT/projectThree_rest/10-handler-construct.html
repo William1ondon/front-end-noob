@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function monster(name){
+            this.name = name;
+        }
+
+        const handler = {
+            // target: 构造函数
+            // args: 传入代理对象的参数
+            construct: function(target, args){
+                console.log(Object.getOwnPropertyDescriptor(target.prototype, 'constructor'));
+                console.log(`Creating a ${target.name}`);// Creating a monster
+                console.log(args);// William
+                console.log(this);
+
+                return new target(...args);
+            }
+        };
+
+        const proxy = new Proxy(monster, handler);
+        let mos = new proxy('William');
+        console.log(mos);
+    </script>
+</body>
+</html>

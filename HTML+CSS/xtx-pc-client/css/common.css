@@ -1,0 +1,242 @@
+/* 该网站中多个网页相同模块的重复样式，如：头部、底部 */
+
+/* 版心 */
+.wrapper {
+    width: 85%;
+    margin: 0 auto;
+}
+
+/* 快捷导航start */
+.shortcut {
+    height: 52px;
+    background-color: #333;
+}
+
+.shortcut .wrapper {
+    height: 52px;
+}
+
+.shortcut .wrapper ul {
+    float: right;
+}
+
+.shortcut .wrapper ul li {
+    float: right;
+    line-height: 52px;
+}
+
+.shortcut .wrapper a {
+    padding: 0 16px;
+    border-right: 1px solid #666666;
+    font-size: 14px;
+    color: #dcdcdc;
+}
+
+.shortcut .wrapper li:first-child a{
+    border: none;
+}
+
+.shortcut .wrapper li:first-child a span{
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8px;
+    width: 11px;
+    height: 16px;
+    background-image: url(../images/sprites.png);
+    /* background-size: 11px 16px; */
+    background-position: -160px -70px;
+}
+/* 快捷导航end */
+
+/* 头部start */
+.header {
+    margin: 30px auto;
+    height: 70px;
+}
+
+.logo {
+    float: left;
+    width: 209px;
+    height: 70px;
+}
+
+/* logo的 搜索引擎（SOE）优化算法 */
+.logo h1 {
+    width: 209px;
+    height: 70px;
+}
+
+.logo h1 a {
+    display: inline-block;
+    line-height: 70px;
+    width: 209px;
+    height: 70px;
+    background-image: url(../images/logo.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    font-size: 0;
+}
+
+.nav {
+    float: left;
+    margin-left: 40px;
+    height: 70px;
+}
+
+.nav li {
+    float: left;
+    margin-right: 48px;
+    line-height: 70px;
+}
+
+.nav li a {
+    padding-bottom: 7px;
+}
+
+.nav li a:hover {
+    color: #27ba9b;
+    border-bottom: 1px solid #27ba9b;
+}
+
+.search {
+    float: left;
+    margin-top: 18px;
+    margin-left: 34px;
+    width: 172px;
+    height: 30px;
+    border: #27ba9b;
+    border-radius: 2px;
+    box-shadow: 1px 1px 2px 0 gray;
+}
+
+.search span {
+    display: inline-block;
+    margin-top: 7px;
+    width: 17px;
+    height: 17px;
+    background-image: url(../images/sprites.png);
+    background-position: -80px -70px;
+}
+
+.search input{
+    float: right;
+    padding-left: 11px;
+    width: 150px;
+    height: 30px;
+    font-size: 14px;
+    color: #ccc;
+}
+
+.shoppingCar {
+    float: left;
+    position: relative;
+    margin-top: 22px;
+    margin-left: 15px;
+    width: 23px;
+    height: 23px;
+    background-image: url(../images/sprites.png);
+    background-position: -119px -69px;
+}
+
+.shoppingCar span {
+    position: absolute;
+    right: -8px;
+    top: -6px;
+    width: 20px;
+    height: 15px;
+    background-color: red;
+    border-radius: 8px;
+
+    font-size: 13px;
+    color: #ffffff;
+    text-align: center;
+    line-height: 15px;
+}
+/* 头部end */
+
+/* 版权区域start */
+.footer {
+    height: 342px;
+    background-color: #333;
+}
+
+.footer .wrapper {
+    width: 1393px;
+}
+
+.footer .top {
+    padding-top: 59px;
+    padding-left: 96px;
+    height: 175px;
+    border-bottom: 3px solid #434343;
+}
+
+.footer .top li {
+    position: relative;
+    float: left;
+    margin-right: 300px;
+    width: 195px;
+    height: 58px;
+    line-height: 58px;
+}
+
+.footer .top li:last-child {
+    margin-right: 0;
+}
+
+/* 如果是伪元素添加的标签，其显示模式为 行内(inline) */
+/* 如果行内块和行内文字无法通过vertical-align或行高对齐，则通过定位解决 */
+.footer .top li::before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    content: '';
+    width: 58px;
+    height: 58px;
+    background-image: url(../images/sprites.png);
+    vertical-align: middle;
+}
+
+.footer .top li:nth-child(2)::before {
+    background-position: -64px 0;
+}
+
+.footer .top li:nth-child(3)::before {
+    background-position: -130px 0;
+}
+
+.footer .top li strong {
+    margin-left: 77px;
+    font-size: 28px;
+    color: #ffffff;
+}
+
+.footer .bottom .link {
+    margin: 41px auto 19px;
+    width: 580px;
+    height: 14px;
+}
+
+.footer .bottom .link li {
+    float: left;
+}
+
+.footer .bottom .link li a {
+    border-right: 1px solid #999999;
+    font-size: 14px;
+    padding: 0 12px;
+    color: #999999;
+}
+
+.footer .bottom .link li:last-child a{
+    border-right: 0px;
+}
+
+.footer .bottom .copyright {
+    width: 145px;
+    height: 14px;
+    margin: 0 auto;
+    font-size: 14px;
+    color: #999999;
+}
+/* 版权区域end */

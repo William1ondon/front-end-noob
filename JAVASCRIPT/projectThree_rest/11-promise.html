@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        /*
+        "Producing code（生产代码）" 是需要一些时间的代码
+        "Consuming code（消费代码）" 是必须等待结果的代码
+        Promise 是一个 JavaScript 对象，它链接生成代码和消费代码
+
+        let myPromise = new Promise(function(myResolve, myReject) {
+        // "Producing Code"（可能需要一些时间）
+
+        myResolve(); // 成功时
+        myReject();  // 出错时
+        });
+
+        // "Consuming Code" （必须等待一个兑现的承诺）
+        myPromise.then(
+            function(value) { 成功时的代码  },
+            function(error) { 出错时的代码 }
+        );
+        */
+        function logSome(someWords){
+            document.getElementById('app').innerHTML = someWords;
+        };
+
+        let mypromise = new Promise(function(myresolve, myreject){
+            let BOOL = false;
+            if(BOOL){
+                myresolve('success');
+            }else{
+                myreject('failed');
+            }
+        });
+
+        /*
+        Promise.prototype.then() 方法是 JavaScript Promise 对象的原型方法，用于添加成功回调函数和链式调用。
+        ·语法：
+            promise.then(onFulfilled, onRejected)
+        ·参数：
+            onFulfilled：一个可选的回调函数，当 Promise 状态变为已完成时调用，接收 Promise 的解决值作为参数。
+            onRejected：一个可选的回调函数，当 Promise 状态变为已拒绝时调用，接收 Promise 的拒绝原因作为参数。
+        */
+        mypromise.then(logSome, logSome);
+
+        
+    </script>
+</body>
+</html>

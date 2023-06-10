@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            font-size: 8px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" placeholder="请输入用户名">
+    <div>用户名长度需在6~16位,由英文字母、数字、下划线或短横线组成</div>
+    <script>
+        const input = document.querySelector('input');
+        const div = document.querySelector('div');
+
+        function fn(){
+            const regularExpression = /^[a-zA-Z0-9-_]{6,16}$/;
+            if(regularExpression.test(input.value)){
+                div.style.color = 'lightgreen';
+                div.innerHTML = '用户名可用';
+            } else{
+                div.style.color = 'red';
+                div.innerHTML = '用户名长度需在6~16位,由英文字母、数字、下划线或短横线组成';
+            }
+        };
+        input.addEventListener('blur', fn);
+    </script>
+</body>
+</html>

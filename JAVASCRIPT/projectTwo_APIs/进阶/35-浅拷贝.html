@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 浅拷贝：
+        // 如果是简单数据类型 则拷贝值
+        // 如果是引用数据类型 则拷贝地址
+        const obj = {
+            uname: 'William',
+            age : 23,
+        }
+        const o = obj;//直接赋值地址
+        // o.uname = 'Jennifer';
+        // console.log(obj.uname);
+
+        // 浅拷贝如果遇见第二层对象，则第二层对象的拷贝也是拷贝的地址
+        // 浅拷贝 方法1:
+        const oo = {...obj};//展开
+        console.log(oo);
+        // oo.uname = 'Jennifer';
+        // console.log(oo.uname);
+        // console.log(o.uname);
+
+        // 浅拷贝 方法2:
+        const ooo = {};
+        Object.assign(ooo, obj);
+        oo.uname = 'Jennifer';
+        console.log(oo.uname);
+        console.log(o.uname);
+    </script>
+</body>
+</html>

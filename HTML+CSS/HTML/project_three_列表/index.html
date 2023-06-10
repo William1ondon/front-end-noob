@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 无序列表 -->
+    <ul>
+        <li>榴莲</li>
+        <li>香蕉</li>
+        <li>苹果</li>
+        <li>火龙果</li>
+    </ul>
+
+    <!-- 有序列表 -->
+    <ol>
+        <li>陈奕迅</li>
+        <li>容祖儿</li>
+        <li>古巨基</li>
+        <li>王菲</li>
+    </ol>
+
+    <!-- 自定义列表 -->
+    <dl>
+        <dt>自定义列表的主题</dt>
+        <dd>针对主题的标签1</dd>
+        <dd>针对主题的标签2</dd>
+        <dd>针对主题的标签3</dd>
+    </dl>
+
+    <!-- 表格标签
+    table：表格整体，用于包裹多个tr
+    tr：   表格每行，用于包裹td
+    td：   表格单元格，用于包裹内容
+    caption：表格大标题
+    th：     表头单元格，通常是表格第一行，默认内部文字加粗居中显示 -->
+    <!-- table的相关属性
+    boder： 边框宽度
+    width： 表格宽度
+    height：表格高度 
+    一般来说在css设置宽高 -->
+    <table border="5">
+        <caption><strong>学生成绩单</strong></caption>
+        <tr>
+            <th>姓名</th>
+            <th>成绩</th>
+            <th>评语</th>
+        </tr>
+
+        <tr>
+            <td>同学a</td>
+            <td>100</td>
+            <td>600分及格你才100？学什么去了？</td>
+        </tr>
+
+        <tr>
+            <td>同学b</td>
+            <td>5</td>
+            <td>自己退学吧</td>
+        </tr>
+    </table>
+
+    <!-- 另外一种写法，就是加了结构：
+    thead： 表格头部
+    tbody： 表格主体
+    tfoot： 表格底部
+    据说会让结构更清晰以至于让浏览器解析的更快 -->
+    <table border="5">
+        <caption><strong>学生成绩单（第二版）</strong></caption>
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>成绩</th>
+                <th>评语</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>同学a</td>
+                <td>400</td>
+                <td>有进步，继续努力</td>
+            </tr>
+            <tr>
+                <td>同学b</td>
+                <td>6</td>
+                <td>你也进步了，但我还是劝你退学</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>总结</td>
+                <td>-</td>
+                <td>总体来说都有进步</td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <!-- 合并单元格
+    ·上下合并->只保留最上的，其他删除（手动）
+    ·左右合并->只保留最左的，（同上）
+    rowspan->跨行合并
+    colspan->跨列合并
+    注意：只有一个结构标签的单元格才可以合并，比如thead中的 -->
+    <table border="5">
+        <caption><strong>同学a个人学期成绩单</strong></caption>
+        <thead>
+            <tr>
+                <th>学期</th>
+                <th>成绩</th>
+                <th>评语</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="2">1</td>
+                <td>100</td>
+                <td>600分及格你才100？学什么去了</td>
+            </tr>
+            <tr>
+                <td>400</td>
+                <td>有进步，继续努力</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>总结</td>
+                <td colspan="2">可造之材</td>
+            </tr>
+        </tfoot>
+    </table>
+
+</body>
+</html>

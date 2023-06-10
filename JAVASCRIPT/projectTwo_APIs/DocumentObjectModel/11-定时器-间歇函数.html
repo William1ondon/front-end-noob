@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>倒计时60秒，剩余60秒</div>
+    <div class="bigTime">倒计时100000000秒，剩余100000000秒</div>
+    <script>
+        let num = 60;
+        let big = 100000000;
+        const div = document.querySelector('div');
+        const bigTime = document.querySelector('.bigTime');
+        function countTime() {
+            num--;
+            div.innerText = `倒计时60秒，剩余${num}秒`;
+            if(num == 0){
+                // 关闭定时器
+                clearInterval(timer1);
+            }
+        }
+        // setInterval(函数, ms);
+        let timer1 = setInterval(countTime, 1000);
+
+
+        // 或者使用匿名函数
+        let timer2 = setInterval(function (){
+            big--;
+            bigTime.innerText = `倒计时100000000秒，剩余${big}秒`;
+            if(big == 0){
+                clearInterval(timer2);
+            }
+        }, 1000)
+
+        console.log(timer1);// 1
+        console.log(timer2);// 2 序号独一无二
+    </script>
+</body>
+</html>

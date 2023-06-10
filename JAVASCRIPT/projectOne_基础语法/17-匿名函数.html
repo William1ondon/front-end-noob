@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>Button</button>
+    <button class="way2">Button2</button>
+    <script>
+        // 1、函数表达式，这种函数只能在表达式之后使用，而普通函数能在声明前用
+        // let num1 = +prompt('num1');
+        // let num2 = +prompt('num2');
+        // let fn = function(num1, num2) {
+        //     return num1+num2;
+        // };
+        // console.log(`${fn(num1,num2)}`);
+
+        // 2、匿名函数
+        //写法1
+        // let btn = document.querySelector('button');
+        // btn.onclick = function() {
+        //     alert('我是匿名函数');
+        // }
+        //写法2，神似java
+        let btn2 = document.querySelector('.way2');
+        btn2.addEventListener('click',function() {
+                alert('我是匿名函数2');
+            }
+        );//必须加分号
+
+        //写法3
+        (function() {
+            console.log('立即执行');
+        })();//立即执行函数，一定要加分号
+
+        (function(num1, num2) {
+            console.log(num1 + num2);
+        })(1,2);
+
+        (function(){console.log('eeeeee......');}());//这种也可以
+    </script>
+</body>
+</html>

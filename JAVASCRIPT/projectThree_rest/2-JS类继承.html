@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // JavaScript类是类（而不是对象），它是对象的模板
+        class Car {
+            /*
+            constructor 构造函数
+                ·必须有确切的名称 -- constructor
+                ·创建新对象的时候自动执行
+                ·用于初始化对象属性
+                ·若没有定义构造方法，JavaScript会自动添加一个空的构造方法
+            */
+            constructor(name, year){
+                this.name = name;
+                this.year = year;
+            }
+
+            // 类方法 注意：名字别于已有的属性冲突
+            present(){
+                return 'I have a ' + this.name;
+            }
+
+            carPlay(){
+                return 'la la la la la';
+            }
+        }
+
+        class Model extends Car {
+            constructor(name, mod){
+                /*
+                super()方法 : 用于在子类的构造函数中调用父类的构造函数
+                    ·通过在constructor方法中调用super()方法，我们调用了父级的constructor方法，获取了父级的属性和方法的访问权限
+                    ·super() 必须在子类构造函数的第一行调用，这是因为它在创建子类实例之前需要执行父类的初始化操作。
+                */
+                super();
+                this.model = mod;
+            }
+
+            show(){
+                // return this.carPlay();
+                // return this.present() + ', it is a ' + this.model;
+            }
+
+
+        }
+
+        let hisCar = new Model('Ford', 'Mustang');
+        console.log(hisCar.show());
+    </script>
+</body>
+</html>

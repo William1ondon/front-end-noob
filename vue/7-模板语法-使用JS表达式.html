@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .class6 {
+            width: 300px;
+            height: 300px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+    ·Vue模板中的JavaScript ，以当前组件实例为作用域解析执行。
+    在 Vue 模板内，JavaScript 表达式可以被使用在如下场景上：
+        *在文本插值中 (双大括号)
+        *在任何 Vue 指令 (以 v- 开头的特殊 attribute) attribute 的值中
+    
+    ·仅支持表达式 ​
+    每个绑定仅支持单一表达式，也就是一段能够被求值的 JavaScript 代码。一个简单的判断方法是是否可以合法地写在 return 后面。
+        // 这是一个语句，而非表达式
+        {{ var a = 1 }}
+        // 条件控制也不支持，请使用三元表达式
+        {{ if (ok) { return message } }}
+
+    ·受限的全局访问
+    模板中的表达式将被沙盒化，仅能够访问到有限的全局对象列表。该列表中会暴露常用的内置全局对象，比如 Math 和 Date。
+    没有显式包含在列表中的全局对象将不能在模板内表达式中访问，例如用户附加在 window 上的属性。然而，你也可以自行在 app.config.globalProperties 上显式地添加它们，供所有的 Vue 表达式使用。
+    -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- 简单的数学运算 -->
+    <p id="app1">{{ 2 + 2 }}</p>
+    <script>
+        const {createApp} = Vue;
+        createApp({
+            data(){
+                return {};
+            }
+        }).mount('#app1')
+    </script>
+
+    <!-- 访问数据对象的属性 -->
+    <p id="app2">{{ user.name }}</p>
+    <script>
+        createApp({
+            data(){
+                const user = {name : 'William'}
+                return {
+                    user
+                };
+            }
+        }).mount('#app2')
+    </script>
+
+    <!-- 访问数据对象的属性 -->
+    <p id="app3">{{ calculateNum(3, 6) }}</p>
+    <script>
+        createApp({
+            data(){
+                // 虽然这样也不是不行
+                // const calculateNum = (x, y) => x * y;
+                // return {
+                //     calculateNum
+                // };
+                return {}
+            },
+
+            // methods对象用于定义可以在模板中调用的方法
+            methods: {
+                calculateNum(x, y) {
+                    return x * y;
+                }
+            }
+        }).mount('#app3')
+    </script>
+
+     <!-- 使用三元表达式进行条件渲染 -->
+     <p id="app4">{{ isLoggedIn ? '已登陆' : '未登录'}}</p>
+     <script>
+         createApp({
+             data(){
+                 return {
+                    isLoggedIn : true
+                 };
+             }
+         }).mount('#app4');
+     </script>
+
+      <!-- 使用三元表达式进行条件渲染 -->
+    <div id="app5">
+        <div v-bind:class="`class${classNum}`">{{ divText }}</div>
+    </div>
+      <script>
+          createApp({
+              data(){
+                  return {
+                    classNum : 6,
+                    divText : 'hi hi hi!!!'
+                  };
+              }
+          }).mount('#app5');
+      </script>
+</body>
+</html>

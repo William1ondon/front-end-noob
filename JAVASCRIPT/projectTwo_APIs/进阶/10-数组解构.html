@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 解构分为：1、数组解构    2、对象结构
+        // 解构赋值是一种快速为变量赋值的简介语法，本质上仍然是为变量赋值
+
+        /*
+        1、数组解构
+            数组解构是将数组的单元值快速批量赋值给一系列变量的简洁语法。
+        */
+        // 应用1：赋值
+       const arr = [60, 80, 100];
+       const [min, avg, max] = arr;
+       console.log(max);
+       console.log(avg);
+       console.log(min);
+
+       console.log('---------------------');
+
+        // 应用2:交换
+        let a = 1;
+        let b = 2;
+        [a,b] = [b,a];
+        console.log('a: '+ a);
+        console.log('b: '+ b);
+
+        console.log('---------------------');
+
+        // detail1:若变量比实际的值多，则多余的变量为undefined
+        const [c,d,e,f] = [1,2,3];
+        console.log(f);
+        // 为防止这种情况的发生，可用赋值默认值
+        const [j = 0, k = 0] = [];
+        console.log(j,k);
+
+        console.log('---------------------');
+
+        // detail2:若变量比实际的值少，则变量正常,可以剩余参数接住剩下的值
+        const [g,h,...i] = [1,2,3,4,5,6,7,8];
+        console.log(g);
+        console.log(h);
+        console.log(i);
+
+        console.log('---------------------');
+
+        // detail3:按需（选择性）赋值
+        const [l,,m] = [6,7,8];
+        console.log(l);
+        console.log(m);
+        
+        console.log('---------------------');
+
+        // detail4:多维数组解构
+        const [n,o,[q,r]] = [16,17,[18,19]];
+        console.log(n);
+        console.log(o);
+        console.log(q);
+        console.log(r);
+    </script>
+</body>
+</html>

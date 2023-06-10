@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 通过CDN使用Vue -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <!-- 在Vue中，你可以通过{{}}语法进行插值，将数据绑定到HTML模板中。在这个例子中，{{message}}表示将message数据的值显示在<div>中。 -->
+    <div id="app">{{message}}</div>
+
+    <script>
+        /* 
+        ·在 Vue 3 中，使用了新的 createApp 函数来创建 Vue 应用实例。它是 Vue 3 中的一种新的应用创建方式，用于替代 Vue 2.x 中的 new Vue()
+        
+        ·createApp 函数是 Vue 对象的一个方法，它接受一个根组件对象或组件选项对象，并返回一个应用实例，用于管理整个 Vue 应用。
+
+        ·在 Vue 中，双大括号 {{ }} 是一种模板语法，用于在模板中插入动态数据。它被称为插值表达式或者简单插值。
+        在 {{ }} 中，你可以放置一个 Vue 实例的数据属性，例如 message。Vue 将会自动将该属性的值动态地渲染到模板中。
+        插值表达式仅用于在模板中显示简单的数据内容，而不用于执行复杂的逻辑或表达式计算。
+        */
+        const { createApp } = Vue;
+
+        // {}中的是“根组件对象”
+        // mount('#app')将应用实例挂载到了id为app的元素上
+        createApp({
+            data(){
+                return {
+                    message : "Hello Vue!"
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

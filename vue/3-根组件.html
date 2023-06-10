@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <div id="APP">{{message}}</div>
+    <script>
+        const {createApp} = Vue;
+        /* 
+        单文件组件的导入方式：
+            import App from './App.vue'
+        
+        什么是单文件组件？
+            ·单文件组件是Vue.js框架中的一种组织代码的方式，它将一个组件的相关代码（包括模板、样式和逻辑）封装在一个单独的文件中，通常以.vue为后缀。这种组织方式使得开发者可以更方便地编写、维护和管理Vue组件
+
+        单文件组件由以下三个主要部分组成：
+            ·模板（Template）：包含组件的HTML结构和标记，用于描述组件的外观和布局。模板使用Vue的模板语法，可以包含动态数据绑定、条件渲染、循环等功能。
+            ·脚本（Script）：包含组件的JavaScript代码，用于定义组件的行为和逻辑。脚本通常导出一个对象，其中包含组件的选项，如数据、计算属性、方法、生命周期钩子等。
+            ·样式（Style）：包含组件的CSS样式，用于设置组件的外观和样式。样式可以使用普通的CSS或预处理器（如Sass、Less）编写。
+
+        ·虽然本指南中的许多示例只需要一个组件，但大多数真实的应用都是由一棵嵌套的、可重用的组件树组成的。例如，一个待办事项 (Todos) 应用的组件树可能是这样的：
+            App (root component)
+            ├─ TodoList
+            │  └─ TodoItem
+            │     ├─ TodoDeleteButton
+            │     └─ TodoEditButton
+            └─ TodoFooter
+            ├─ TodoClearButton
+            └─ TodoStatistics
+
+        */
+        const app = createApp({
+            data(){
+                return {
+                    message : 'Hi! Vue!'
+                };
+            }
+        });
+        console.log(app);
+
+        // app.mount(document.querySelector('#APP'));
+
+        // 返回一个Proxy对象
+        // Proxy 是 JavaScript 中的一个内置对象，它允许你创建一个代理对象，用于拦截并自定义目标对象上的操作。
+        console.log(app.mount('#APP'));
+    </script>
+</body>
+</html>

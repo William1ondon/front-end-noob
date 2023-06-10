@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 文本插值
+    ·最基本的数据绑定形式
+    ·“Mustache（胡子）”语法，即双大括号
+    ·双大括号标签会被替换为相应组件实例中msg属性的值。同时每次msg属性更改时它也会同步更新
+     -->
+    <div id="app">{{msg}}</div>
+
+    <script type="module">
+        import {createApp} from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+
+        createApp({
+            data(){
+                return {
+                    msg : 'Hello! Vue!'
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>

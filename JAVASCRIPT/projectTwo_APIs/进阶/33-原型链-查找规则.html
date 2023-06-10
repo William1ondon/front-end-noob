@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        1、当访问一个对象的属性（方法）时，首先查找这个对象自身有没有该属性
+        2、如果没有就查找它的原型对象（xxx.__proto__）
+        3、如果也没有找到就找原型对象的原型对象(xxx.__proto__.__proto__)
+        4、依次类推一直找到Object的原型对象为止（Object.prototype === null）
+        ·__proto__对象原型的意义就在于 为对象成员查找机制提供一条路线，顺着找就可以了
+        ·可以使用instanceof运算符检测构造函数的prototype属性是否出现在某个实例对象的原型链上
+        */
+
+        function Person(){}
+        const ldh = new Person();
+
+        console.log(ldh instanceof Person);// true
+        console.log(ldh instanceof Object);// true
+    </script>
+</body>
+</html>

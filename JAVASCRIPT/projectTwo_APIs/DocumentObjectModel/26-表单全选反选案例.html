@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        th, td {
+            width: 100px;
+            height: 20px;
+            border: 1px solid skyblue;
+        }
+
+        thead th{
+            border: none;
+            border-top: 1px solid skyblue;
+        }
+        thead th:first-child {
+            border-left: 1px solid skyblue;
+        }
+        thead th:last-child {
+            border-right: 1px solid skyblue;
+        }
+        thead {
+            background-color: skyblue;
+            color: #ffffff;
+        }
+
+        tbody td {
+            text-align: center;
+        }
+
+        input:checked {
+            width: 16px;
+            height: 16px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    <input type="checkbox">
+                    全选
+                </th>
+                <th>商品</th>
+                <th>商家</th>
+                <th>价格</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <input type="checkbox">
+                </td>
+                <td>小米13ultra</td>
+                <td>小米</td>
+                <td>¥6999</td>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="checkbox">
+                </td>
+                <td>小米净水器</td>
+                <td>小米</td>
+                <td>¥1399</td>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="checkbox">
+                </td>
+                <td>小米大师电视</td>
+                <td>小米</td>
+                <td>¥16888</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        const checkBox = document.querySelectorAll('[type=checkbox]');
+        let count = 0;
+        for(let i = 0; i < checkBox.length; i++){
+            checkBox[i].addEventListener('click', function(){
+                if (checkBox[0].checked === true && this === checkBox[0]){
+                    checkBox[1].checked = true;
+                    checkBox[2].checked = true;
+                    checkBox[3].checked = true;
+                    count = 3;
+                }
+                if (checkBox[0].checked === false && this === checkBox[0]){
+                    checkBox[1].checked = false;
+                    checkBox[2].checked = false;
+                    checkBox[3].checked = false;
+                    count = 0;
+                }
+
+                if(this.checked === true && i !== 0){
+                    count++;
+                }else if(this.checked === false && i !== 0){
+                    count--;
+                }
+
+                if (count > 2 && i !== 0){
+                    checkBox[0].checked = true;
+                }else if(count <= 2 && i !== 0){
+                    checkBox[0].checked = false;
+                }
+                console.log(count);
+                console.log(document.querySelectorAll('input:checked').length);
+            });
+        }
+    </script>
+</body>
+</html>

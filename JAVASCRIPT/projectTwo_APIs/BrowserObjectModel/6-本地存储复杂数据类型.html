@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 复杂数据类型无法直接使用
+        // const obj = {
+        //     uname : 'william',
+        //     age : 23,
+        //     salary : 57377,
+        // }
+        // localStorage.setItem('object', obj);
+        // console.log(localStorage.getItem('object'));
+
+        // 需将其转换为JSON字符串
+        // JSON.stringify(复杂数据类型)
+        const obj = {
+            uname : 'william',
+            age : 23,
+            salary : 57377,
+        }
+        localStorage.setItem('object', JSON.stringify(obj));// 转换为了{"uname":"william","age":23,"salary":57377}
+        // 获取的时候转回来
+        console.log(JSON.parse(localStorage.getItem('object')));
+    </script>
+</body>
+</html>

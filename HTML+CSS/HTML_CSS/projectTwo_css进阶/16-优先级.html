@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 优先级公式：
+    继承<通配符选择器<标签选择器<类选择器<id选择器<行内样式<!important
+    总结：范围越广，优先级越低
+    ps.!important在>>除继承关系<<外都是最高等级 -->
+    <!-- 权重叠加计算：
+    复合选择器中：（0，         0，          0，            0）
+            行内样式的个数 id选择器的个数 类选择器的个数 标签选择器的个数
+    从做到右分别为第一级、第二季......先比较第一级，第一级哪个大其优先级就大，
+    第一级相同就比较第二级......
+    若最终所有数字相同，则比较层叠性（谁写在下面谁说了算） -->
+    <style>
+        div #one {
+            color: orange;
+        }
+
+        .father .son {
+            color: skyblue;
+        }
+
+        .father p {
+            color: purple;
+        }
+
+        div p {
+            color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div class="father">
+        <p class="son" id="one">我是一个标签</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let input = +prompt('请输入需要计算的秒数');
+
+        function calculate(input) {
+            let h, m, s;
+            h = parseInt(input / 3600);
+            m = parseInt(input / 60 % 60);
+            s = parseInt(input % 60);
+            console.log(`h:${h}, m:${m}, s:${s}`);
+        }
+
+        calculate(input);
+    </script>
+</body>
+</html>

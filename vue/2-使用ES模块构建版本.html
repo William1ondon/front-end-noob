@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">{{message}}</div>
+
+    <!-- 
+        <script type="module"> 是 HTML 中用于指定模块化脚本的标签。当浏览器遇到这个标签时，会将其中的脚本代码视为 ES 模块，并按照 ES6 模块化的规范进行解析和执行。 
+
+        在<script type="module">内部，你可以使用 import 和 export 关键字来导入和导出模块。
+    -->
+    <script type="module">
+        import {createApp} from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+        
+        const app = createApp({
+            data(){
+                return {
+                    message : 'Hello Again! Vue!'
+                };
+            }
+        });
+
+        console.log(app.config);
+        app.config.errorHandler = (err) => {}
+        console.log(app.config.errorHandler);
+        app.mount('#app');
+    </script>
+</body>
+</html>

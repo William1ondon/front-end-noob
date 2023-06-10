@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <div id="app">
+        <button v-on:click="increment">{{count}}</button>
+    </div>
+    <script>
+        const {createApp} = Vue;
+        createApp({
+            data(){
+                return {
+                    count : 0,
+                }
+            },
+            methods : {
+                increment(){
+                    this.count++;
+                    /*
+                    问题：Vue.js中，当数据发生变化时，Vue会>>异步<<地执行一系列DOM更新操作，然后才将更新后的结果渲染到页面上。
+                    这意味着在数据变化后立即访问DOM可能得到的是更新前的状态。
+
+                    如何解决：nextTick()
+                        ·nextTick()方法接受一个回调函数作为参数，在DOM更新后执行该回调函数。
+                    */
+                }
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>

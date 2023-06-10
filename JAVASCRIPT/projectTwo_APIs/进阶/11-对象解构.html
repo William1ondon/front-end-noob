@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const obj = {
+            uname : 'William',
+            age : 23,
+        }
+
+        // 解构的语法,名字要一一对应
+        const {uname,age} = obj;
+        console.log(uname);
+        console.log(age);
+
+        console.log('----------------------');
+
+        // 万一之前有个变量也叫“uname”，可以这样改名
+        const {uname:username, age:agee} = obj;
+        console.log(username);
+        console.log(agee);
+
+        console.log('----------------------');
+
+        // 解构数组中的对象
+        const pig = [
+            {
+                uname:"佩奇",
+                age:"??"
+            }
+        ];
+        const [{uname:pigName, age:pigAge}] = pig;
+        console.log(pigName);
+        console.log(pigAge);
+
+        // 多级对象解构
+        const pigHouse = {
+            name:'佩奇',
+            family:{
+                mother:'猪妈妈',
+                father:'猪爸爸',
+                sister:'乔治？',
+            },
+            age:'still dont know',
+        };
+        const {name,family:{mother,father,sister},age:Age} = pigHouse;// 注意第二重对象必须写名字加：
+    </script>
+</body>
+</html>

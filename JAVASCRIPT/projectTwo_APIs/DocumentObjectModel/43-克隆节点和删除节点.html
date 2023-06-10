@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <script>
+        /* 克隆节点
+        元素.cloneNode(bool)
+        ·若为true，则克隆的时候会包含后代节点一起克隆
+        ·若为false，则克隆的时候不包含后代节点
+        ·某人false */
+        const ul = document.querySelector('ul');
+        // 这里若为false，那么里面的text即1不会被克隆过去
+        const li_clone = ul.children[0].cloneNode(true);
+        ul.insertBefore(li_clone, ul.children[2]);
+
+        /* 删除节点
+        父元素.removeChild(要删除的元素) */
+        ul.removeChild(ul.children[3]);
+    </script>
+</body>
+</html>

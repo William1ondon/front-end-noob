@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .top {
+            margin: 0 auto;
+            width: 1000px;
+            background-color: skyblue;
+        }
+
+        .bottom {
+            height: 100px;
+            background-color: orange;
+        }
+
+        .left {
+            float: left;
+            width: 200px;
+            height: 300px;
+            background-color: #ccc;
+        }
+
+        .right {
+            float: right;
+            width: 790px;
+            height: 300px;
+            background-color: sienna;
+        }
+
+        /* 一般都起这个名字 */
+        .clearfix {
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <!-- 清除浮动的意图：
+    浮动的不良影响：父子级标签，子级浮动，父级没有高度，后面的标准流盒子会受影响，在这里就是标准流盒子bottom会出现在浏览器最顶端
+                 虽然设置父级标签高度可以解决这样的问题，但实际在使用的时候这么干会不方便增加子级标签（每增加一个都可能要重新设置一下高度）
+    如何消除：
+        操作：
+            1.在父元素内容的最后添加一个块级元素
+            2.给添加的块级元素设置clear:both(left的话就是消除左边的影响，其他类推) -->
+    <div class="top">
+        <div class="left"></div>
+        <div class="right"></div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="bottom"></div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function person() {
+            this.eyes = 2;
+            this.head = 1;
+        }
+
+        function woman(){}
+        function man(){}
+
+        // 原型继承
+        woman.prototype = new person();
+        woman.prototype.constructor = woman;
+        man.prototype = new person();
+        man.prototype.constructor = man;
+
+        const w = new woman();
+        const m = new man();
+
+        console.log(w.ears);
+        console.log(m.head);
+        console.log(woman.prototype.constructor);
+
+        woman.prototype.giveBirth = () => console.log('give birth');
+        w.giveBirth();
+        // m.giveBirth();// [Error] TypeError: m.giveBirth is not a function. (In 'm.giveBirth()', 'm.giveBirth' is undefined)
+    </script>
+</body>
+</html>

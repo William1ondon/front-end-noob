@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 这个数组元素感觉跟‘容器’有点相似
+        let arr1 = ['red', 'green', 'blue'];
+        console.log(arr1.push('skyblue', 'lightblue'));//push返回添加后数组的长度
+        console.log(arr1);/* ["red", "green", "blue", "skyblue", "lightblue"] */
+
+        let arr2 = ['red', 'green', 'blue'];
+        console.log(arr2.unshift('skyblue', 'lightblue'));//unshift也返回添加后数组的长度
+        console.log(arr2);/* ["skyblue", "lightblue", "red", "green", "blue"] */
+
+        // 小案例
+        let arr3 = [2,0,6,1,77,0,52,0,25,7];
+        let arr4 = [];
+        for(let i = 0; i < arr3.length; i ++){
+            if (arr3[i] >= 10){
+                arr4.push(arr3[i]);
+            }
+        }
+        console.log(arr4);
+    </script>
+</body>
+</html>

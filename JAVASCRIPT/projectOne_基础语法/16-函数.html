@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function hello() {
+            console.log('Hello World');
+        }
+
+        function getSum(num1, num2) {
+            document.write(`${num1+num2}`);
+        }
+
+        // 默认参数
+        function getMul(num1 = 0, num2 = 0){
+            document.write(`${num1*num2}`);
+        }
+
+        function sumScore(arr = []){
+            let sum = 0;
+            for(let i = 0; i < arr.length; i++){
+                sum += Number(arr[i]);
+            }
+            document.write(`${sum}`);
+        }
+
+        hello();
+
+        // let num1 = +prompt(`请输入第一个数`);
+        // let num3 = +prompt(`请输入第二个数`);
+        // getSum(num1, num3);
+
+        getMul();
+        document.write(`<br>`);
+        let arr = [1,2,3,4,5,6,7,8];
+        sumScore(arr);
+    </script>
+</body>
+</html>

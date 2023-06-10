@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const arr = [1,2,3];
+        console.log(...arr);// [Log] 1 – 2 – 3 本质上等价于1,2,3
+
+        // 运用场景1，以前要这么比较
+        // console.log(Math.max(arr[0],arr[1],arr[2]));
+
+        // 现在只需要这样
+        console.log(Math.max(...arr));
+
+        // 运用场景2:合并数组
+        const arr1 = [4,5,6];
+        const arr2 = [...arr, ...arr1];
+        console.log(...arr2);
+    </script>
+</body>
+</html>

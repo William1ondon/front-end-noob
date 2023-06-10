@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .box {
+            width: 600px;
+            margin: 50px auto;
+            display: flex;
+            font-size: 25px;
+            line-height: 40px;
+        }
+
+        .qs {
+
+            width: 450px;
+            height: 40px;
+            color: red;
+
+        }
+
+        .btns {
+            text-align: center;
+        }
+
+        .btns button {
+            width: 120px;
+            height: 35px;
+            margin: 0 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>随机点名</h2>
+    <div class="box">
+        <span>名字是：</span>
+        <div class="qs">这里显示姓名</div>
+    </div>
+    <div class="btns">
+        <button class="start">开始</button>
+        <button class="end">结束</button>
+    </div>
+
+    <script>
+        // 数据数组
+        let tempNum;
+        let timer1;
+        const arr = ['马超', '黄忠', '赵云', '关羽', '张飞'];
+        const display = document.querySelector('.box .qs');
+        const btnStart = document.querySelector('.btns .start');
+        const btnEnd = document.querySelector('.btns .end');
+        function getRandom(N, M){
+            return (Math.floor(Math.random()*(M - N + 1)) + N);
+        }
+        btnStart.addEventListener('click', function(){
+            if(arr.length === 1){
+                btnStart.disabled = true;
+                btnEnd.disabled = true;
+                display.innerText = arr[0];
+            }
+            timer1 = setInterval(function(){
+                tempNum = getRandom(0, arr.length - 1);
+                display.innerHTML = arr[tempNum];
+            }, 1000);
+        });
+        btnEnd.addEventListener('click', function(){
+            clearInterval(timer1);
+            arr.splice(tempNum, 1);
+            console.log(arr);
+        });
+    </script>
+</body>
+
+</html>

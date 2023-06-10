@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 分两种：显示转换和隐式转换 -->
+    <script>
+        // 1、显示转换，强转
+        //Number(xxx)
+        //parseInt(xxx) 保留整数
+        //parseFloat(xxx) 可以保留小数，这个“可以”很关键
+
+        // 2、隐式转换
+        //任何数据和字符串相加结果都是字符串，其他运算都转为数字
+        console.log('william' + 1);//输出是william1，把后面的1自动转为字符串
+        console.log(2 + '2');//输出是22
+        console.log(2 - '2');//输出0，这里是转为数字了
+        console.log(2 * '2');//输出4，转为数字
+        console.log(2 / '2');//输出1，转为数字
+        console.log(+'123');//输出数字123
+        console.log('pink' / '2');//NaN
+    </script>
+</body>
+</html>

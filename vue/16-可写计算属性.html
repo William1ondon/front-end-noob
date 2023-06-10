@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="module">
+    /*
+    计算属性 vs 方法
+    计算属性会基于 其响应式依赖 而被缓存，一个计算属性仅在其响应式依赖更新时才重新计算
+    也就是说，只要>>响应式依赖<<不改变，无论访问多少次计算属性都会返回先前的计算结果，而不用重复执行getter函数
+    */
+    import { createApp, ref, computed } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+    
+    createApp({
+        setup(){
+            const firstName = ref('FirstName');
+            const lastName = ref('LastName');
+
+            const username = computed({
+                //getter
+                get(){
+                    return firstName.value + ' ' + lastName.value;
+                },
+                // setter
+                set(newName){
+                    [firstName.value, lastName.value] = newName.split(' ');
+                }
+            });
+
+            const onInput = function(e){
+                username.value = e.target.value;
+            }
+
+            return {
+                onInput,
+                username,
+            };
+        }
+    }).mount('#app');
+    </script>
+
+    <div id="app">
+        <h1>{{username}}</h1>
+        <input type="text" v-on:input="onInput">
+    </div>
+</body>
+</html>

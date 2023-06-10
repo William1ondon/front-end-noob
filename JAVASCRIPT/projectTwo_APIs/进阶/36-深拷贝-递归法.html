@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        深拷贝：
+            ·深拷贝拷贝的是对象，不是地址
+        
+        常见方法：
+            1、通过递归实现深拷贝
+            2、lodash/cloneDeep
+            3、通过JSON.stringfy()实现
+        */
+    //    我的方法，由于数组也是"OBject"，所以这样不行
+    //    function deepCopy(dst = {}, src = {}){
+    //     let valArr = Object.values(src);
+    //     let keyArr = Object.keys(src);
+    //     for(let i = 0; i < valArr.length; i++){
+    //         console.log(i, keyArr[i] , valArr[i]);
+    //         if(typeof(valArr[i]) === 'object'){
+    //             console.log('in Object' + valArr[i]);
+    //             dst[keyArr[i]] = {};
+    //             deepCopy(dst[keyArr[i]], valArr[i]);
+    //         }else
+    //             dst[keyArr[i]] = valArr[i];
+    //     }
+    //     return;
+    //    }
+
+    // 正确的方法
+        function deepCopy(dst = {}, src = {}){
+            for(let k in src){
+                if(src[k] instanceof Array){
+                    dst[k] = [];
+                    deepCopy(dst[k], src[k]);
+                }else if(src[k] instanceof Object){
+                    dst[k] = {};
+                    deepCopy(dst[k], src[k]);
+                }else{
+                    dst[k] = src[k];
+                }
+            }
+        }
+       const obj = {
+        uname : 'William',
+        age : 18,
+        arr : [1,2,3,4,5,6],
+        electricProduct : {
+            phone : 'iphone14 pro max',
+            computer : 'Macbook Pro 16-inch',
+            musicDevice : {
+                homepod : '2 x Homepod2',
+                earphone : 'Airpods Pro 2',
+            }
+        }
+       };
+       let objdst = {};
+
+       deepCopy(objdst, obj);
+       objdst.age = 23;
+       objdst.electricProduct.watch = 'Apple watch S8';
+       objdst.electricProduct.musicDevice.earphone = 'Airpods Pro 2 and Airpods Max';
+       objdst.arr[3] = 8;
+
+       console.log(objdst);
+       console.log(obj);
+    </script>
+</body>
+</html>

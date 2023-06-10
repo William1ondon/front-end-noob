@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        对象原型
+            对象都会有一个属性_proto_指向构造函数的prototype原型对象
+            之所以对象可以使用构造函数prototype原型对象的属性和方法，就是因为对象原型的存在
+        */
+       function Star(){}
+       const ldh = new Star();
+       console.log(ldh.__proto__ === Star.prototype);
+       console.log(ldh.__proto__.constructor === Star);
+    </script>
+</body>
+</html>

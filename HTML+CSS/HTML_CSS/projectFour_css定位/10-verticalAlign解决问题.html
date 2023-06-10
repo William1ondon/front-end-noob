@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 浏览器遇到行内/行内块标签当作文字处理！默认文字是按基线对齐的 */
+        /* 浏览器遇到行内/行内块标签当作文字处理！默认文字是按基线对齐的 */
+        /* 浏览器遇到行内/行内块标签当作文字处理！默认文字是按基线对齐的 */
+        .father {
+            width: 600px;
+            height: 600px;
+            background-color: skyblue;
+            /* 跟文字一样 */
+            line-height: 600px;
+
+            /* 水平居中也跟文字一样 */
+            text-align: center;
+        }
+
+        img {
+            vertical-align: middle;
+            /* 或者设置display:block */
+        }
+    </style>
+</head>
+<body>
+    <div class="father">
+        <img src="78.jpg" alt="" height="300px">
+    </div>
+</body>
+</html>

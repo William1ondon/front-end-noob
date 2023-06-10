@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .advertisement {
+            position: relative;
+            margin-top: 60px;
+            width: 600px;
+            height: 160px;
+            background-color: skyblue;
+        }
+
+        .close {
+            position: absolute;
+            top: 3px;
+            right: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="advertisement">
+        1
+        <div class="close">X</div>
+    </div>
+
+    <div class="advertisement">
+        2
+        <div class="close">X</div>
+    </div>
+
+    <div class="advertisement">
+        3
+        <div class="close">X</div>
+    </div>
+
+    <script>
+        const closes = document.querySelectorAll('.close');
+        for(let i = 0; i < closes.length; i++){
+            closes[i].addEventListener('click', function(){
+                closes[i].parentNode.style.display = 'none';
+            });
+        }
+    </script>
+</body>
+</html>

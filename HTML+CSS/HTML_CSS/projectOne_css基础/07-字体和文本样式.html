@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 字号
+        ·记得加px */
+        .size {
+            font-size: 30px;
+        }
+
+        /* 字体粗细
+        ·关键字「normal」正常 「bold」加粗
+        ·纯数字「400」正常 「700」加粗 */
+        .weight {
+            font-weight: 700;
+        }
+
+        /* 文字倾斜 */
+        .italic {
+            font-style: italic;
+        }
+
+        /* 字体样式 */
+        .family {
+            /* 这里的意思是兼容多种字体 如果都没有就用随便一种非衬线字体serif */
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        /* font的复合属性（连写） */
+        .fontSimple{
+            font: italic 700 66px 'Times New Roman';
+        }
+
+        /* 文本缩进 */
+        .indent {
+            /* text-indent: 50px; */
+            /* em是一个字的大小 */
+            text-indent: 2em;
+        }
+
+        /* 文本水平对齐
+        属性名：text-align
+        取值：
+        left：左对齐
+        center：居中对齐
+        rigjt：右对齐 */
+        .align {
+            text-align: center;
+        }
+
+        /* 文本修饰
+        下划线：underline
+        删除线：line- through
+        上划线：overline
+        无装饰线：none */
+        .decoration {
+            text-decoration: line-through;
+        }
+
+        /* 行高
+        属性名：line-height
+        取值：
+        ·数字+px
+        ·倍数（当前font-size的倍数） */
+        .lineHeight{
+            line-height: 10px;
+            /* 行高与font连写的注意点
+            ·font：style weight size/line-height family */
+        }
+    </style>
+</head>
+<body>
+    <!-- 默认字号是16px -->
+    <p class="size">段落文字</p>
+
+    <p class="weight">段落文字</p>
+    <p class="italic">段落文字</p>
+
+    <!-- mac默认苹方字体 -->
+    <p class="family">This is 'Times New Roman' font-family</p>
+
+    <p class="fontSimple">This is mixed font style</p>
+
+    <p class="indent">有了 Mac，就能和复杂的设置过程说再见。只要登录 iCloud，你在 iPhone 或 iPad 上的资料就会自动出现；使用迁移助理功能，你的设置、用户账户和其他数据都能轻松转移。如果有问题或需要帮助，Apple 支持服务随时待命，你只要上网聊、打电话或预约到店就可以。</p>
+
+    <h1 class="align">居中对齐</h1>
+    <!-- 若要让文本、span标签、a标签、input标签、img标签水平居中，则需要给他们的父级元素设置 -->
+    <div class="align"><img src="32.jpg" alt="" width="300"></div>
+
+    <div class="decoration">这是一个div标签</div>
+    <p class="decoration">这是一个p标签</p>
+    <h3 class="decoration">这是一个h3标签</h3>
+    <a href="#" class="decoration">这是一个空的超链接</a>
+
+    <!-- 行高=上间距+文本高度+下间距 -->
+    <div class="lineHeight">这是行高的demo</div>
+    <div class="lineHeight">这是行高的demo</div>
+</body>
+</html>

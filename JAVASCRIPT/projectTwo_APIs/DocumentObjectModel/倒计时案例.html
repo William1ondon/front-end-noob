@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>明天晚上九点的倒计时，还剩00:00:00</div>
+    <script>
+        const div = document.querySelector('div');
+        const deadLine = new Date('2023-05-04 21:00:00');
+        let delta;
+        let days;
+        let hours;
+        let minutes;
+        let seconds;
+
+        let timerID = setInterval(function(){
+            delta = deadLine - (new Date());
+            console.log(delta);
+            if(delta === 0){
+                div.innerHTML = `明天晚上九点的倒计时，还剩00:00:00`;
+                clearInterval(timerID);
+            }else {
+                days = parseInt(delta / 1000 / 60 / 60 / 24);
+                hours = parseInt(delta / 1000 / 60 / 60 % 24);
+                minutes = parseInt(delta / 1000 / 60 % 60);
+                seconds = parseInt(delta / 1000 % 60);
+
+                div.innerHTML = `明天晚上九点的倒计时，还剩${(hours + days*24) < 10 ? '0' + (hours + days*24) : (hours + days*24)}:\
+                ${minutes < 10 ? '0' + minutes : minutes}:\
+                ${seconds < 10 ? '0' + seconds : seconds}`;
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

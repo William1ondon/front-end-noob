@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="onClick">点这</button>
+        <div v-if="x === 1">这是1</div>
+        <div v-else-if="x === 2">这是2</div>
+        <div v-else>你得先按一下</div>
+
+        <!-- 如果想要一起切换多个元素 -->
+        <template v-if="flag">
+            <button @click="onClick">点这</button>
+            <div v-if="x === 1">这是1</div>
+            <div v-else-if="x === 2">这是2</div>
+            <div v-else>你得先按一下</div>
+        </template>
+
+        <!-- v-show 也能按条件显示
+        ·不同之处：v-show 会在DOM中保留该元素；v-show仅仅切换了该元素上display的css属性！！如下是showFlag为false的情况下DOM：
+                <h1 style="display: none;">这是使用了v-show的标签</h1>
+        而如果是v-if为false的话是不会出现在DOM中的。
+
+        · 如何选择？？
+        v-if 是“真实的”按条件渲染，因为它确保了在切换时，条件区块内的事件监听器和子组件都会被销毁与重建。
+        v-if 也是惰性的：如果在初次渲染时条件值为 false，则不会做任何事。条件区块只有当条件首次变为 true 时才被渲染。
+        总的来说，v-if 有更高的切换开销，而 v-show 有更高的初始渲染开销。因此，如果需要频繁切换，则使用 v-show 较好；如果在运行时绑定条件很少改变，则 v-if 会更合适。
+        -->
+
+        <!-- 注意：v-if 和 v-for 
+        当 v-if 和 v-for 同时存在于一个元素上的时候，v-if 会首先被执行。
+        因此同时使用 v-if 和 v-for 是不推荐的
+        -->
+        <h1 v-show="showFlag">这是使用了v-show的标签</h1>
+    </div>
+
+    <script type="module">
+        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+
+        createApp({
+            setup(){
+                let x = ref(0);
+                let flag = ref(false);
+                let showFlag = ref(false);
+
+                function onClick(){
+                    x.value = (x.value + 1) % 3;
+                }
+
+                return {
+                    x,
+                    onClick,
+                    flag,
+                    showFlag,
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>

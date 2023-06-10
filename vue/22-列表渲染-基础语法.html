@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="app">
+        <!-- <li v-for="item in arrayObj">{{item.name + ' ' + item.age}}</li> -->
+        <br>
+        <li>----------------------------</li>
+        <br>
+        <!-- 也能加上index -->
+        <!-- <li v-for="(item, index) in arrayObj">{{item.name + ', age: ' + item.age + ', index: ' + index}}</li> -->
+
+        <!-- v-for 与 forEach
+        ·v-for变量的作用域和forEach很类似。
+        ·并且也可以在定义v-for的变量别名时使用解构
+        ·多层嵌套的时候，每个v-for作用域都可以访问到父级作用域
+        -->
+        <li v-for="(item, index) in arrayObj">
+            {{item.name + ', age: ' + item.age + ', index: ' + index}}
+            <div v-for="({name, age}, index) in item.children">{{name + ', age: ' + age + ', index: ' + index}}</div>
+        </li>
+    </ul>
+    <script type="module">
+    import {createApp, ref} from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+
+    createApp({
+        setup(){
+            const arrayObj = ref([
+                {name: 'Tony', age: 30, children: [
+                    {name: 'tony', age: 11},
+                    {name: 'jony', age: 8},
+                    {name: 'hony', age: 5}
+                ]},
+                {name: 'Jenny', age: 29, children: [
+                    {name: 'abcony', age: 11},
+                    {name: 'defony', age: 8},
+                    {name: 'ghiony', age: 5}
+                ]},
+                {name: 'John', age:27, children: [
+                    {name: 'azhe', age: 11},
+                    {name: 'juejuezi', age: 8},
+                    {name: 'shuidongajiarenmen', age: 5}
+                ]}
+            ]);
+            return {
+                arrayObj,
+            };
+        }
+    }).mount('#app');
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 只使用event的时候可以直接在定义warn的时候参数列表写一个event -->
+        <!-- <button @click="warn"></button> -->
+
+        <!-- 使用多个参数还要用event的时候有以下两种方式 -->
+        <button @click="warn('Hello', $event)">button</button>
+        <button @click="(event) => warn('Hello again!', event)">button1</button>
+    </div>
+
+    <script type="module">
+        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+
+        createApp({
+            setup(){
+                function warn(message, event){
+                    alert(message + event.target);
+                }
+
+                return {
+                    warn
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>

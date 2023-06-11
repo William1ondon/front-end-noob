@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>{{vueVar}}</h1>
+
+        <!-- # 表单输入绑定 -->
+        <!-- <input type="text"  v-bind:value="vueVar" v-on:input="event => vueVar = event.target.value" placeholder="一般情况我们是这么绑定的"> -->
+
+        <!-- v-model -->
+        <!-- <input type="text" v-model="vueVar" placeholder="现在是这么绑定的"> -->
+
+        <!-- v-model 还可以用于各种不同类型的输入 -->
+        <!-- <textarea cols="30" rows="10" v-model="vueVar"></textarea> -->
+
+        <!-- 情景1: 单选 -->
+        <select v-model="vueVar">
+            <option value="你选了第一个选项">One</option>
+            <option value="你选了第二个选项">Two</option>
+            <option value="你选了第三个选项">Three</option>
+        </select>
+
+        <!-- 情景2：多选，组成数组 -->
+        <select v-model="vueVar" multiple>
+            <option value="你选了第一个选项">One</option>
+            <option value="你选了第二个选项">Two</option>
+            <option value="你选了第三个选项">Three</option>
+        </select>
+
+        <!-- checkbox -->
+        <!-- 情景1: 若let vueVar = ref('') 或 ref({})，则绑定的是布尔值 -->
+        <!-- <input type="checkbox" value="这是第1个checkbox" v-model="vueVar">
+        <input type="checkbox" value="这是第2个checkbox" v-model="vueVar">
+        <input type="checkbox" value="这是第3个checkbox" v-model="vueVar"> -->
+
+        <!-- 情景2: 若let vueVar = ref([]). 则数组将始终包含所有当前被选中的框的value值。-->
+        <!-- <input type="checkbox" value="这是第1个checkbox" v-model="vueVar">
+        <input type="checkbox" value="这是第2个checkbox" v-model="vueVar">
+        <input type="checkbox" value="这是第3个checkbox" v-model="vueVar"> -->
+
+        <!-- ratio 1、若没有配置value选中默认就on 2、若配置了value那么选中了就是value -->
+        <!-- <input type="radio" v-model="vueVar" value="123">
+        <input type="radio" v-model="vueVar" value="456">
+        <input type="radio" v-model="vueVar" value="789"> -->
+
+        <!-- 拓展：搭配v-for动态渲染 -->
+        <h2>{{selected}}</h2>
+        <select v-model="selected">
+            <option disabled value="">A</option>
+            <option v-for="item in array" v-bind:value="item.value">{{item.text}}</option>
+        </select>
+        <!-- 如果 v-model 表达式的初始值不匹配任何一个选择项，<select> 元素会渲染成一个“未选择”的状态。在 iOS 上，这将导致用户无法选择第一项，因为 iOS 在这种情况下不会触发一个 change 事件。因此，我们建议提供一个空值的禁用选项，如上面的例子所示。 -->
+    </div>
+
+    <script type="module">
+        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+
+        createApp({
+            setup(){
+                // let vueVar = ref('');
+                // let vueVar = ref({});
+                let vueVar = ref([]);
+
+                let selected = ref('A');
+                let array = ref([
+                    {text: 'One', value: 'A'},
+                    {text: 'Two', value: 'B'},
+                    {text: 'Three', value: 'C'}
+                ]);
+                
+                return {
+                    vueVar,
+                    selected,
+                    array
+                };
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

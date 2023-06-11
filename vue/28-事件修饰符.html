@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- # 事件修饰符 -->
+    <!-- 
+        在处理事件时调用 event.preventDefault() 或 event.stopPropagation() 是很常见的。尽管我们可以直接在方法内调用，但如果方法能更专注于数据逻辑而不用去处理 DOM 事件的细节会更好。
+     -->
+
+     <a @click.stop="doThis">单机事件将停止传递</a>
+     <form @submit.prevent="onSubmit">提交事件将 不重新加载页面</form>
+     <a @click.stop.prevent="doThat">修饰语可以用链式书写</a>
+     <form @submit.prevent>也可以只有修饰符</form>
+     <div @click.self="doThis">仅当 event.target 是元素本身时才会触发事件处理器</div>
+     <!-- ！使用修饰符时要注意调用顺序 -->
+     <!-- 
+        例如：
+        · @click.prevent.self 表示阻止子元素及其自身的所有默认行为，然后是元素本身的话就触发事件
+        · @click.self.prevent 表示仅阻止自身的默认行为，然后是元素本身的话就触发事件
+      -->
+
+      <!-- # 与原生addEventListener事件相对应的事件修饰符 -->
+      <div @click.capture="doThis">事件在捕获的时候触发，也就是外部元素先触发处理，然后再到内部元素</div>
+      <a @click.once="doThis">点击事件最多被触发一次</a>
+      <div @scroll.passive="onScroll">事件一触发马上执行默认操作，然后再执行passive后面的操作，避免"onScroll"函数中有preventDefault()</div>
+
+      <!-- ！请勿同时使用.passive和.prevent，否则.prevent会被忽略且浏览器会抛出警告 -->
+</body>
+</html>

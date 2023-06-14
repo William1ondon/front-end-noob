@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- vue 特殊attribute -->
+        <input type="checkbox" 
+            v-model="toggle"
+            true-value="yes"
+            false-value="no">
+
+        <!-- v-model 绑定动态值 -->
+        <input type="checkbox"
+            v-model="toggle1"
+            v-bind:true-value="dynamicTrueValue"
+            v-bind:false-value="dynamicFalseValue">
+
+        <!-- ! true-value 和 false-value attributes 不会影响 value attribute，因为浏览器在表单提交时，并不会包含未选择的复选框。为了保证这两个值 (例如：“yes”和“no”) 的其中之一被表单提交，请使用单选按钮作为替代。如下：-->
+
+        <input type="radio" v-model="pick" v-bind:value="first">
+        <input type="radio" v-model="pick" v-bind:value="second">
+    </div>
+
+    <script type="module">
+        import { createApp, ref, watch} from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+
+        createApp({
+            setup(){
+                let toggle = ref('');
+                let toggle1 = ref('');
+                let dynamicTrueValue = ref('这是真的');
+                let dynamicFalseValue = ref('这是假的');
+                let first = ref('male');
+                let second = ref('female');
+                let pick = ref('');
+
+                watch(toggle, (toggle)=> console.log(toggle));// yes/no
+                watch(toggle1, (toggle1)=> console.log(toggle1));// dynamicTrueValue.value/dynamicFalseValue.value
+                watch(pick, (pick)=> console.log(pick));
+
+                return {
+                    toggle,
+                    toggle1,
+                    dynamicTrueValue,
+                    dynamicFalseValue,
+                    first,
+                    second,
+                    pick,
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>

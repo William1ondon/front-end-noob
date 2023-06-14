@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- .lazy
+        每次输入完，鼠标点别的地方，才会更新；准确地说，是在每次 change 事件后更新数据。
+
+        · change 事件是在用户操作 <input>, <select>, <textarea> 等表单元素时触发的事件。它表示用户已经完成了对表单元素的修改。
+        当用户对表单元素进行更改并且将焦点从该元素移开时，change 事件被触发。这意味着用户可能已经选择了不同的选项、输入了不同的文本或者改变了表单元素的值。
+        -->
+        <div>{{msg}}</div>
+        <input type="text" v-model.lazy="msg"></input>
+
+        <div>--------------------------------</div>
+
+        <!-- ，number
+        如果想让用户输入自动转换为数字，就用这个
+        如果该值无法被 parseFloat() 处理，那么将返回原始值。
+        number 修饰符会在输入框有 type="number" 时自动启用。
+        -->
+        <input type="text" v-model.number="msg1">
+
+        <!-- .trim
+        如果你想要默认自动去除用户输入内容中两端的空格
+        -->
+        <input type="text" v-model.trim="msg2">
+    </div>
+
+    <script type="module">
+        import { createApp, ref, watch} from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+
+        createApp({
+            setup(){
+                let msg = ref('');
+                let msg1 = ref(0);
+                let msg2 = ref();
+
+                watch(msg1, (msg1) => console.log(msg1));
+                watch(msg2, (msg2) => console.log(msg2));
+
+                return {
+                    msg,
+                    msg1,
+                    msg2
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>

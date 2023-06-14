@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="question">
+        <div>{{answer}}</div>
+    </div>
+
+    <script type="module">
+        import { createApp, ref, watch} from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+
+        createApp({
+            setup(){
+                let question = ref();
+                let answer = ref('Questions usually contain a question mark. ;-)');
+
+                /*
+                    使用 async 关键字可以将函数声明为异步函数。
+                    如果不使用 async 关键字，我们将无法在回调函数中使用 await 关键字来等待异步操作完成。因为没有 async 关键字，JavaScript 引擎将会将回调函数视为同步函数，不会等待异步操作的完成，而是立即执行下一行代码。这样就无法正确地处理异步操作的结果。
+                */
+                watch(question, async (newQuestion) => {
+                    if(newQuestion.indexOf('?') > -1){
+                        answer.value = 'Thinking...';
+                        try {
+                            let res = await fetch('https://yesno.wtf/api');
+                            console.log(res);// 这是一个Response对象
+
+                            // Response的json方法返回一个Promise，Promise的解析resolve的结果是将文本体解析为JSON
+                            // console.log((await res.json()));
+                            //[Log] {answer: "no", forced: false, image: "https://yesno.wtf/assets/no/21-05540164de4e3229609f106e468fa8e7.gif"}
+
+                            // Response 接口的 clone() 方法创建一个响应对象的克隆，这个对象在所有方面都是相同的，但是储存在不同的变量中。 
+                            // 类似于底层的 ReadableStream.tee api，克隆的 Response 的 body 将以两个 body 的更快消费者的速度发出背压信号，并且未读的数据在消费较慢的 body 上进行内部排队，没有任何限制或者背压。背压指的是数据流消费者（如这种情况，读取响应正文的代码）让数据生产者减缓速度（如 TCP 服务器）以免在应用程序等待使用的内存中加载大量数据的机制。如果仅消费了一个克隆分支，那么整个 body 都将在内存中缓冲。因此，clone() 是按顺序读取两次响应的一种方式，但是你不应该在并行时以不同的速度使用它读取非常大的 body。
+                            const res1 = res.clone();
+                            answer.value = (await res.json()).answer;
+
+                            // Response是一个“流”，也就是说只能读取一次。别人上传1T的文件，然后服务器/客户端先全部读取到内存，服务器/客户端直接就挂了……所以不确定最大能多大的东西，默认都是流式处理
+                            console.log((await res1.json()));
+                        } catch (error) {
+                            answer.value = 'Error! Could not reach the API. ' + error;
+                        }
+                    }
+                });
+
+                return {
+                    question,
+                    answer,
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>

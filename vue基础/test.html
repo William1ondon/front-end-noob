@@ -7,16 +7,21 @@
 </head>
 <body>
     <ul id="app">
-        <li v-for="(_,item) in list">{{item}}</li>
+        <li v-for="(value, item) in list">{{value + ' ' +  item}}</li>
     </ul>
     <script type="module">
         import { createApp, ref, onMounted } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
 
         createApp({
             setup(){
+                const student0 = {'name' : 'Tony'};
+                const student1 = {'name' : 'Jenny'};
+                const student2 = {'name' : 'Mary'};
+
                 const list = {
-                  {name:'abc'},
-                  {name:'abc'},
+                    'studentTony':student0,
+                    student1,
+                    student2
                 };
 
                 return {

@@ -5,17 +5,12 @@
     <link rel="icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vite App</title>
-    <script src="./src/components/ButtonNoCompile.js"></script>
   </head>
   <body>
-    <div id="app">
-      <my-component></my-component>
-    </div>
+    <div id="app"></div>
+    <div id="app1"></div>
+    <div id="app2"></div>
+    <button-counter></button-counter>
     <script type="module" src="./src/main.js"></script>
-    <script>
-      const app = Vue.createApp({});
-      app.component('my-component', MyComponent);
-      app.mount('#app');
-    </script>
   </body>
 </html>

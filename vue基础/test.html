@@ -1,12 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 <body>
-  <div style="width: 300px; height: 300px; color: blue;"></div>
+    <ul id="app">
+        <li v-for="(_,item) in list">{{item}}</li>
+    </ul>
+    <script type="module">
+        import { createApp, ref, onMounted } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+
+        createApp({
+            setup(){
+                const list = {
+                  {name:'abc'},
+                  {name:'abc'},
+                };
+
+                return {
+                    list,
+                }
+            }
+        }).mount('#app');
+    </script>
 </body>
 </html>

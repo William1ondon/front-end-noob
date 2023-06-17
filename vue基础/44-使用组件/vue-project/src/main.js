@@ -1,7 +1,12 @@
 // import './assets/main.css'
 
+
 import { createApp } from 'vue'
 // import App from './App.vue'
-import ButtonCounter from './components/ButtonCounter.vue'
+import Son from './components/Son.vue'
+import Father from './components/Father.vue'
+import App from './App.vue'
 
-createApp(ButtonCounter).mount('#app')
+createApp(Son).mount('#app1')// 直接用
+createApp(Father).mount('#app');// 间接用
+createApp(App).mount('#app2');// 间接用

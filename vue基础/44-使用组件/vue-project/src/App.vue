@@ -1,47 +1,30 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import { ref } from 'vue'
+import Father from './components/Father.vue';
+import Slot from './components/Slot.vue';
+const posts = ref([
+  { id: 1, title: 'My journey with Vue' },
+  { id: 2, title: 'Blogging with Vue' },
+  { id: 3, title: 'Why Vue is so fun' }
+]);
+
+const fontSize = ref(1);
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+    <!-- 有时候我们想和HTML元素一样向组件中传递内容 -->
+    <Slot>Congratulations! This is your special label.</Slot>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+
+    <div v-bind:style="{fontSize : fontSize + 'em'}">
+      <Father
+        v-for="post in posts"
+        v-bind:keys="post.id"
+        v-bind:title="post.title"
+        v-on:enlarge-text=" {
+          console.log($event);// undefined
+          fontSize = fontSize + 0.1;
+        }"
+    />
     </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
 </template>
-
-<style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>

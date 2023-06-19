@@ -1,47 +1,35 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+    import { ref } from 'vue';
+
+    const msgs = ref([]);
+    const repos = ref(['front-end-noob', 'whatever']);
+
+    let myInit = { since: '2023-06-18T12:30:45Z' };
+
+
+    async function getGithubMsg() {
+        let tempMsg = ['Failed to fetch msg'];
+        let response = await fetch(`https://api.github.com/repos/William1ondon/${repos.value[0]}/commits`, myInit);
+        let parseData = await response.json();
+        tempMsg = parseData.map((item) => {
+              return item['commit'];
+        });
+        console.log(tempMsg);
+        return tempMsg;
+    }
+
+    async function update() {
+        msgs.value = await getGithubMsg();
+    }
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+    <button @click="update" style="width: 60px; height: 16px;">Button</button>
+    <ul>
+      <li v-for="item in msgs">
+          <div>{{ item['tree']['sha'].substring(0, 8) }}</div>
+          <div>{{'message:  ' + item['message']}}</div>
+          <div>{{ 'By  ' + item['author']['name'] + 'at  ' + item['author']['date'] }}</div>
+      </li>
+    </ul>
 </template>
-
-<style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>

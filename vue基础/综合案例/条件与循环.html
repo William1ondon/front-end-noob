@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="app">
+        <button @click="toggleList">Toggle List</button>
+        <button @click="lists.push(lists.length + 1)">Push Number</button>
+        <button @click="lists.pop()">Pop Number</button>
+        <button @click="lists.reverse()">Reverse List</button>
+        <li v-if="isShow" v-for="item in lists">{{ item }}</li>
+        <div v-else-if="lists.length">List is not empty, but hidden.</div>
+        <div v-else>List is empty</div>
+    </ul>
+
+    <script type="module">
+    import { createApp, ref, computed } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+    
+    createApp({
+        setup(){
+            const lists = ref([
+                1,
+                2,
+                3
+            ]);
+            const isShow = ref(true);
+
+            function toggleList(){
+                isShow.value = !isShow.value; 
+            }
+
+            return {
+                lists,
+                isShow,
+                toggleList,
+            };
+        }
+    }).mount('#app');
+    </script>
+</body>
+</html>

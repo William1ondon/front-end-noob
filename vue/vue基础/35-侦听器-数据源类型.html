@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="onClick">Button</button>
+    </div>
+    <script type="module">
+        import { createApp, ref, watch } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+
+        createApp({
+            setup(){
+                const x = ref(8);
+                const y = ref(8);
+
+                // watch 的第一个参数可以是不同形式的“数据源”：
+                // 可以是一个ref（包括计算属性）/ 响应式对象 / getter函数 / 多个数据源组成的数组
+
+                // 单个ref
+                watch(x, (value) => {
+                    // 改变输入的参数，不影响原有ref
+                    console.log('value', ++value);
+                    console.log('x.value', x.value);
+                });
+
+                // getter函数
+                watch(() => x.value + y.value, (sum) => console.log(sum));
+
+                // 多个来源组成的数组
+                watch([x, () => y.value], ([x_ref, y_getter]) => {
+                    console.log('x_ref.value', x_ref);
+                    console.log('y_getter', y_getter);
+                })
+
+                function onClick(){
+                    x.value++;
+                    y.value++;
+                }
+
+                // 注意，
+
+                return {
+                    onClick
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>

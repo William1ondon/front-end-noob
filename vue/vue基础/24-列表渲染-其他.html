@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 在 v-for 里使用范围值 -->
+        <div v-for="n in 18">{{n}}</div>
+
+        <!-- <template> 上的v-for -->
+        <template v-for="n in 3">
+            <div>这是在template模板内</div>
+        </template>
+
+        <!-- v-if 和 v-for
+        这会抛出一个错误，因为属性 todo 此时
+        没有在该实例上定义
+        <li v-for="todo in todos" v-if="!todo.isComplete">
+            {{ todo.name }}
+        </li>
+        -->
+
+        <!-- 在外新包装一层 <template> 再在其上使用 v-for 可以解决这个问题 (这也更加明显易读)：
+        <template v-for="todo in todos">
+            <li v-if="!todo.isComplete">
+              {{ todo.name }}
+            </li>
+        </template>
+        -->
+    </div>
+    <script type="module">
+        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+
+        createApp({
+            setup(){
+                return {};
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>

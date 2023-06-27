@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 通过key管理状态
+    · Vue默认按照“就地>更新<”的策略来更新通过v-for渲染的元素列表，当数据项的顺序变化时，Vue不会随之移动DOM元素的顺序，而是就地更新每个元素，结果它们都在原本制定的索引位置上渲染；因此仅适用于 列表渲染输出结果 不依赖 子组件状态或者临时DOM状态 的情况。  
+
+    · 为了给Vue一个提示，以便它可以追踪每个节点的表示，从而重用和重新排序现有元素，就可以为每个元素对应的块提供一个唯一的 key。
+    · 官方推荐任何可行的时候都给v-for提供一个key。除非所迭代的 DOM 内容非常简单 (例如：不包含组件或有状态的 DOM 元素)，或者你想有意采用默认行为来提高性能。
+    -->
+    <div id="app">
+        <div v-for="value in array" v-bind:key="value.id">{{value}}</div>
+    </div>
+
+    <script type="module">
+        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+
+        createApp({
+            setup(){
+                return {};
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>

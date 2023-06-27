@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div :style="{width: w + 'px', height: h + 'px', backgroundColor: c}"></div>
+        <div :style="styleObject0"></div>
+
+        <!-- 可以给style绑定一个包含多个样式对象的数组 -->
+        <div :style="[styleObject0, styleObject1]"></div>
+
+        <!-- #自动前缀
+        当你在 :style 中使用了需要>>浏览器特殊前缀<<的CSS属性时，Vue会>>自动<<为他们加上相应的前缀.
+        -->
+
+        <!-- #样式多值
+        你可以对一个样式属性提供多个>>不同前缀<<的值
+        数组仅会渲染 浏览器支持的>>最开始<<那个值
+        -->
+    </div>
+
+    <script type="module">
+        import {createApp, ref, reactive} from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+
+        createApp({
+            setup(){
+                const w = ref(300);
+                const h = ref(300);
+                const c = ref('blue');
+
+                const styleObject0 = ref({
+                    width: '300px',
+                    height: '300px',
+                    backgroundColor: 'skyblue',
+                })
+
+                const styleObject1 = ref({
+                    border: '1px solid black',
+                    backgroundColor: 'skyblue',
+                })
+
+                return {
+                    w,
+                    h,
+                    c,
+                    styleObject0,
+                    styleObject1,
+                }
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>

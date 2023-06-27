@@ -1,5 +1,5 @@
 - [x] JavaScript/HTML/CSS
-- [ ] 通读Vue官方教程的基础篇，教程的例子都模仿一次
+- [x] 通读Vue官方教程的基础篇，教程的例子都模仿一次
 - [ ] 阅读官方教程进阶篇前半部分，到「自定义指令(Custom Diretive」为止。着重理解 Vue 的响应式机制和组件生命周期。「渲染函数（Render Function)」如果理解吃力可以先跳过。
 - [ ] 阅读教程里关于路由和状态管理的章节，然后根据需要学习 vue-router 和 vuex。同样的，先不要管构建工具，以跟着文档里的例子理解用法为主。
 - [ ] 了解 JavaScript 背后的规范，ECMAScript 的历史和目前的规范制定方式。学习 ES2015/16 的新特性，理解 ES2015 modules，适当关注[还未成为标准的提案](http://link.zhihu.com/?target=https%3A//github.com/tc39/proposals)。

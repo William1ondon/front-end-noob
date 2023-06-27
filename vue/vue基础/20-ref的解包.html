@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 1、vue在模板中的解包 -->
+
+        <!-- 只有顶层属性才适用自动“解包”，所以以下表达式结果为NaN -->
+        <!-- <p v-on:click="onClick">{{count1.count+1}}</p> -->
+
+        <!-- 可以通过将count改成顶层属性来解决这个问题 -->
+        <!-- <p v-on:click="onClick">{{count+1}}</p> -->
+
+        <!-- 这样为什么又可以呢？ -->
+        <!-- 因为这里的文本插值是个>>最终值<<，相当于{{ count1.count.value }}，这只是文本插值的一个方便功能 -->
+        <!-- <p v-on:click="onClick">{{count1.count}}</p> -->
+    </div>
+
+    <script type="module">
+        import {createApp, reactive, ref} from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+
+        createApp({
+            setup(){
+                function onClick(){
+                    //  count0.count++;
+                     count1.count.value++;
+                } 
+
+                let count1 = {count: ref(0)};
+                let {count} = count1;
+                count.value++;
+
+                /* 2、vue在响应式对象中的解包 */
+                // 当一个ref被嵌套在一个响应式对象中，作为属性被访问或更改时，它会自动解包，因此会表现得和一般的属性一样。
+                let ref0 = ref(0);
+                let ref1 = ref({ref0});
+                console.log(ref0);// [Log] RefImpl {__v_isShallow: false, dep: undefined, __v_isRef: true, _rawValue: 0, _value: 0}
+                console.log(ref1.value.ref0);// 0，自动解包了
+
+                // 如果讲一个新的ref赋值给一个关联了 已有ref 的属性，那么它会替换掉旧的ref
+                let ref2 = ref(3);
+                ref1.value.ref0 = ref2;
+                console.log(ref1.value.ref0);// 3
+                console.log(ref0.value);// 它没变，还是0
+
+                /* 3、当 作为响应式数组或Map（原声集合类型） 时 >>不会解包<< */
+                const books = reactive([ref('Hello!')]);
+                console.log(books[0]);// [Log] RefImpl {__v_isShallow: false, dep: undefined, __v_isRef: true, _rawValue: "Hello!", _value: "Hello!"}
+
+                const aMap = reactive(new Map([["REF", ref(123)]]));
+                console.log(aMap.get("REF"));// [Log] Proxy {__v_isShallow: false, dep: undefined, __v_isRef: true, _rawValue: 123, _value: 123}
+
+                return {
+                    count1,
+                    count,
+                    onClick,
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>

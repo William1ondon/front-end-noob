@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>{{vueVar}}</h1>
+
+        <!-- # 表单输入绑定 -->
+        <input type="text"  v-bind:value="vueVar" v-on:input="event => vueVar = event.target.value" placeholder="一般情况我们是这么绑定的">
+    </div>
+
+    <script type="module">
+        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+
+        createApp({
+            setup(){ 
+                const vueVar = ref();
+                const arr = [3,5,6,8];
+                const titles = [
+      'Name',
+      'Power'
+    ]
+                const keysFlag = titles.map((ele) => {
+                    console.log(ele);
+                    return { [ele]: 1 }
+                });
+                console.log(keysFlag);
+
+                return {
+                    vueVar
+                };
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div></div>
+    </div>
+
+    <script type="module">
+        import { createApp, ref, watch, watchEffect } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+
+        createApp({
+            setup(){
+                /* 
+                # 侦听器的回调中 使用 与 被侦听源完全相同的 响应式状态(ref/reactive) 是很常见的
+                如下是不使用watchEffect 加载一个远程资源的例子
+
+                · 特别注意侦听器是如何两次使用 todoId 的，一次作为源，另一次在回调中
+                */
+                const todoId = ref(1);
+                const data = ref(null);
+
+                watch(todoId, async () => {
+                    let res = await fetch(
+                        `https://jsonplaceholder.typicode.com/todos/${todoId.value}`
+                    );
+                    data.value = await res.json();
+                }, {immediate: true});
+
+                /*
+                # 可用watchEffect函数来简化上面的代码
+                重写为：
+
+                · 这个例子中，回调会立即执行，不需要指定 immediate: true。在执行期间，它会自动追踪 todoId.value 作为依赖（和计算属性类似）。每当 todoId.value 变化时，回调会再次执行。有了 watchEffect()，我们不再需要明确传递 todoId 作为源值。
+
+                · 对于这种只有一个依赖项的例子来说，watchEffect() 的好处相对较小。但是对于有多个依赖项的侦听器来说，使用 watchEffect() 可以消除手动维护依赖列表的负担。此外，如果你需要侦听一个嵌套数据结构中的几个属性，watchEffect() 可能会比深度侦听器更有效，因为它将只跟踪回调中被使用到的属性，而不是递归地跟踪所有的属性。
+                */
+                watchEffect(async () => {
+                    let res = await fetch(
+                        `https://jsonplaceholder.typicode.com/todos/${todoId.value}`
+                    );
+                    data.value = await res.json();
+                })
+
+                return {};
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>

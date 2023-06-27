@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- #使用v-for来遍历一个对象的所有属性
+        · 遍历的顺序 基于 该对象调用 Object.keys()的返回值决定（返回 给定对象自身的 可枚举的 字符串键属性名 组成的数组）
+         -->
+        <div v-for="value in myObj">{{value}}</div>
+
+        <!-- 同样有第二个参数，来表示属性名 -->
+        <div v-for="(value, key) in myObj">{{'['+ key +', ' + value + ']'}}</div>
+
+        <!-- 更有第三个参数可以表示index -->
+        <div v-for="(value, key, index) in myObj">{{'['+ key +', ' + value + ']' + ', index:' + index}}</div>
+    </div>
+    <script type="module">
+        import {createApp, ref} from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+
+        createApp({
+            setup(){
+                const myObj = ref({
+                    title: 'Learning how to do lists in Vue',
+                    author: 'William',
+                    publishedAt:'2023-6-10'
+                })
+
+                console.log(myObj.value);
+
+                return {
+                    myObj
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>

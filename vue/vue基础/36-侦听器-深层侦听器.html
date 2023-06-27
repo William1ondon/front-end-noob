@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="onClick">Button</button>
+    </div>
+    <script type="module">
+        import { createApp, ref, watch, reactive } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+
+        createApp({
+            setup(){
+                /* 1、直接给watch()传入一个响应式对象(reactive不能改成ref)
+                会隐式地创建一个深层侦听器 ==》 该回调函数在 所有嵌套的变更时 都会被触发
+                */
+                const obj1 = reactive({count : 0});
+                watch(obj1, (abc)=>console.log(abc));// [Log] Proxy {count: 1}
+                obj1.count++;
+
+                /* 2、getter函数(reactive也可以)
+                只有在返回不同的对象时，才会触发回调
+                */
+               let obj2 = ref({
+                    someObject: {}
+               });
+               watch(()=>obj2.value.someObject, (newValue) => {console.log(newValue);});
+               obj2.value.someObject = {name : 'tony'};
+
+
+               /* 3、显式地加上deep选项
+               强制转成深层侦听器
+               · 谨慎使用：
+                    深度侦听需要遍历被侦听对象中的所有嵌套的属性，当用于大型数据结构时，开销很大。因此请只在必要时才使用它，并且要留意性能。
+               */
+               const obj = ref({
+                name: 'Tony',
+                children: {
+                    name1:'Mary',
+                    name2:'Jessy',
+                }
+               });
+
+                watch(obj, ({name:parent, children:{name1:children1, name2:children2}}) => {
+                    console.log('parent', parent);
+                    console.log('children1', children1);
+                    console.log('children2', children2);
+                }, { deep: true, immediate: true })
+                /* 4、即使回调的侦听器
+                如果想要在创建侦听器时，立即执行一遍回调，例如：
+                我们想要请求一些初始数据，然后在相关状态更改时重新请求数据
+                可以传入{immediate: true}
+                */
+
+                function onClick(){
+                    obj.value.name = 'Kessy';
+                    obj.value.children.name1 = 'Jane';
+                    obj.value.children.name2 = 'June';
+                }
+
+                return {
+                    onClick
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .Blue{
+            color: blue;
+        }
+
+        .Green{
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div :title="message">Hover your mouse over me for a few seconds to see my dynamically bound title!</div>
+
+        <div @click="toggleColor" ref="ref1">This should be red... but click me to toggle it.</div>
+
+        <div @click="isGreen = !isGreen" :class="{Green : isGreen, Blue : !isGreen}">This should be green, and should toggle between green and blue on click.</div>
+    </div>
+
+    <script type="module">
+        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+
+        createApp({
+            setup(){
+                const message = ref('Hello world!');
+                const ref1 = ref(null);
+                const Green = ref('Green');
+                const Blue = ref('Blue');
+                const isGreen = ref(true)
+
+                function toggleColor(){
+                    let color = ref1.value.style.color;
+                    ref1.value.style.color = color === 'red' ? 'blue' : 'red';
+                }
+
+                return {
+                    message,
+                    ref1,
+                    toggleColor,
+                    Green,
+                    Blue,
+                    isGreen
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>

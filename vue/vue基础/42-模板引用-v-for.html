@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="app">
+        <li v-for="item in list" ref="itemRefs">{{item}}</li>
+    </ul>
+    <script type="module">
+        import { createApp, ref, onMounted } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+
+        createApp({
+            setup(){
+                const list = ref([
+                    'Tony',
+                    'Jenny',
+                    'Mary'
+                ]);
+
+                // ref 数组并不保证与原数组相同的顺序
+                const itemRefs = ref([]);
+
+                onMounted(() => {
+                    console.log(itemRefs);
+                });
+
+                return {
+                    list,
+                    itemRefs
+                }
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>

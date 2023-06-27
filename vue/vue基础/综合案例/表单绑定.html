@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2>Text Input</h2>
+        <input type="text" v-model="inputMsg">
+        <span>{{ inputMsg }}</span>
+
+        <h2>Checkbox</h2>
+        <input type="checkbox" v-model="checkBox">
+        <span>{{'Checked: ' + checkBox}}</span>
+
+        <h2>Multi Checkbox</h2>
+        <input type="checkbox" id="Jack" value="Jack" v-model="multiCheckBox">
+        <label for="Jack">Jack</label>
+        <input type="checkbox" id="John" value="John" v-model="multiCheckBox">
+        <label for="John">John</label>
+        <input type="checkbox" id="Mike" value="Mike" v-model="multiCheckBox">
+        <label for="Mike">Mike</label>
+        <div>checked names:</div>
+        <div>{{ multiCheckBox }}</div>
+
+        <h2>Radio</h2>
+        <input type="radio" id="One" value="One" v-model="radio">
+        <label for="One">One</label>
+        <input type="radio" id="Two" value="Two" v-model="radio">
+        <label for="Two">Two</label>
+        <div>{{'Pick: ' + radio}}</div>
+
+        <h2>Select</h2>
+        <select v-model="select">
+            <option disabled value="">Please select one.</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+        </select>
+        <div>{{ 'selected :' + select }}</div>
+
+        <h2>Multi Select</h2>
+        <select v-model="multiSelect" multiple>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+        </select>
+        <div>{{ 'selected :' + multiSelect }}</div>
+    </div>
+
+    <script type="module">
+        import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+
+        createApp({
+            setup(){
+                const inputMsg = ref('Edit it');
+                const checkBox = ref(false);
+                const multiCheckBox = ref([]);
+                const radio = ref('One');
+                const select = ref('A');
+                const multiSelect = ref(['A']);
+
+                return {
+                    inputMsg,
+                    checkBox,
+                    multiCheckBox,
+                    radio,
+                    select,
+                    multiSelect,
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>

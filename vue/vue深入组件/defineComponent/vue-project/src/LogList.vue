@@ -1,0 +1,60 @@
+<script>
+import {ref, reactive, defineComponent, Ref, onMounted} from "vue";
+import {settingsStore} from "/@/store/module/settings";
+import {IRoleList} from "/@/interface/role/list.interface";
+import {IHttpResult} from "/@/interface/common.interface";
+import { ILogListParams } from "/@/interface/settings/log.interface";
+export default defineComponent({
+   name: "LogList",
+   setup() {
+       const logList: Ref<IRoleList[]> = ref([]);
+       const columns = [
+       	...
+       ];
+
+       const pagination = ref({
+            "show-quick-jumper": true,
+            total: 100,
+            current: 1,
+            "show-size-changer": true,
+            "show-total": (total: number, range: number[]) => `${range[0]}-${range[1]} 共 ${total} 条`,
+            "pageSize": 10
+       });
+       const columnsList = ref(columns);
+       const params: ILogListParams = reactive({
+           page: 1,
+           pageSize: 10
+       });
+
+       onMounted(() => {
+           findLogList();
+       });
+       /*查询日志列表*/
+       const findLogList = () => {
+           settingsStore.findLogList(params).then((res: IHttpResult) => {
+               const data = res.data;
+               pagination.value.total = data.total;
+               logList.value = data.list;
+           });
+       };
+       /*修改状态*/
+       const onChange = (pagination: {current: number, pageSize: number}) => {
+           params.page = pagination.current;
+           params.pageSize = pagination.pageSize;
+       };
+       /*删除*/
+       const onDelete = (id: number) => {
+           alert(id);
+       };
+      return {
+          columnsList,
+          logList,
+          onDelete,
+          onChange,
+          pagination
+      };
+   }
+});
+
+
+</script>

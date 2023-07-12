@@ -1,29 +1,39 @@
 <script setup>
-  import { ref } from 'vue';
-  const isActive = ref(true);
+    import { ref } from 'vue';
+
+    const show = ref(false);
 </script>
 
 <template>
-  <button @click="isActive = !isActive">Toggle</button>
-  <div>
-    <Transition name="my-component">
-      <p v-if="isActive">Hello! Transition!</p>
+    <button @click="show = !show">Button</button>
+
+    <Transition name="bounce">
+        <p v-if="show" style="text-align: center;">
+            Hello! Here is bouncy text!
+        </p>
     </Transition>
-  </div>
 </template>
 
 <style scoped>
-  .my-component-enter-active {
-    transition: all 0.3s ease-out;
-  }
+.bounce-enter-active {
+    animation: bounce-in 1s;
+}
 
-  .my-component-leave-active {
-    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-  }
+.bounce-leave-active {
+    animation: bounce-in 0.5s reverse;
+}
 
-  .my-component-enter-from,
-  .my-component-leave-to{
-    transform: translateX(20px);
-    opacity: 0;
-  }
+@keyframes bounce-in {
+    0% {
+        transform: scale(0);
+    }
+
+    50% {
+        transform: scale(1.5);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
 </style>

@@ -1,77 +1,79 @@
 <script setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
+import { gsap } from 'gsap';
 
-let count = 0;
-const items = ref([]);
+const list = [
+  { msg: 'Bruce Lee' },
+  { msg: 'Jackie Chan' },
+  { msg: 'Chuck Norris' },
+  { msg: 'Jet Li' },
+  { msg: 'Kung Fury' }
+]
 
-function randomIndex(max) {
-  return Math.floor(Math.random() * max);
+const inputData = ref('');
+
+const fiteredData = computed(() => {
+    return list.filter(({msg}) => {
+        let length = inputData.value.length;
+        let msgdata = msg.substring(0, length).toLowerCase();
+        let inputdata = inputData.value.toLowerCase();
+        if(inputdata === '')
+            return true;
+        return msgdata === inputdata;
+    })
+});
+
+function onBeforeEnter(el) {
+    el.style.opacity = 0;
+    // 这个高度加上的话变换位置的时候才不会是跳楼式
+    el.style.height = 0;
 }
 
-function addItem() {
-  items.value.splice(randomIndex(items.value.length), 0, count++);
+function onEnter(el, done) {
+    gsap.to(el, {
+        opacity: 1,
+        height: '1.6em',
+        delay: el.dataset.index * 0.5,
+        // 默认duration是0.5s
+        // duration: 1,
+        ease: "ease-in",
+        // 回调函数done表示过渡结束，如果不加这个Dom不会刷新，元素还在原来的坑上
+        onComplete: done
+    })
 }
 
-function removeItem() {
-  items.value.splice(randomIndex(items.value.length), 1);
-}
-
-function getRefName(id) {
-  return `id${id}`;
-}
-
-function addClass() {
-  const ele = document.getElementById('6');
-  ele.classList.add("myClass");
+function onLeave(el, done) {
+    gsap.to(el, {
+        opacity: 0,
+        height: 0,
+        delay: el.dataset.index * 0.5,
+        // duration: 1,
+        ease: "ease-out",
+        onComplete: done
+    })
 }
 </script>
 
 <template>
-  <button @click="addItem">Add a item</button>
-  <br>
-  <button @click="removeItem">remove a item</button>
-  <br>
-  <button @click="addClass">add position absolute</button>
+    <input type="text" v-model="inputData" placeholder="input to filter">
 
-  <!-- tag 是个prop，作用是指定一个元素作为容器元素渲染，在这里就是指定ul作为容器元素渲染 -->
-  <TransitionGroup name="list" tag="ul">
-    <!-- 列表中的每个元素都必须有一个独一无二的 `key` attribute。 -->
-    <li v-for="item in items" :key="item" :id="item">
-      {{ item }}
-    </li>
-  </TransitionGroup>
+    <TransitionGroup
+        name="list"
+        tag="ul"
+        @before-enter="onBeforeEnter"
+        @enter="onEnter"
+        @leave="onLeave"
+        :css="false">
+        <li v-for="(item, index) in fiteredData"
+            :key="item.msg"
+            :data-index="index">
+            {{ item.msg }}
+        </li>
+    </TransitionGroup>
 </template>
 
 <style scoped>
-.list-enter-active,
-.list-leave-active {
-  transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
-}
-
-.list-enter-from,
-.list-leave-to {
-  opacity: 0;
-  transform: translateX(30px);
-}
-
-/* 不加下面两个时，增加删除元素总是会弹跳一下,很生硬 */
 .list-move {
-  /* 这个是对移动中的元素应用的过渡 */
-  transition: all 3s cubic-bezier(0.075, 0.82, 0.165, 1);
-}
-
-/* 使用 position: absolute 可以实现一下效果：
-    1、离场元素不再占据原来的位置，其他元素可以在其原有位置继续布局，无需因为离场元素的消失而重新布局
-    2、由于离场元素不再占据空间，其他元素在过渡期间可以自然填补其位置
-
-  经测试：“删除行为” 和 “absolute” 缺一不可，缺少一个都不会有平滑过渡的效果，原因有机会看源码的时候
-  再研究
-*/
-.list-leave-active {
-  position: absolute;
-}
-
-.myClass {
-  position: absolute;
+    transition: all 1s linear;
 }
 </style>

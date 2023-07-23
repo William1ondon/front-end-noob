@@ -1,6 +1,6 @@
 - [x] JavaScript/HTML/CSS
 - [x] 通读Vue官方教程的基础篇，教程的例子都模仿一次
-- [ ] 阅读官方教程进阶篇前半部分，到「自定义指令(Custom Diretive」为止。着重理解 Vue 的响应式机制和组件生命周期。「渲染函数（Render Function)」如果理解吃力可以先跳过。
+- [x] 阅读官方教程进阶篇前半部分，到「自定义指令(Custom Diretive」为止。着重理解 Vue 的响应式机制和组件生命周期。「渲染函数（Render Function)」如果理解吃力可以先跳过。
 - [ ] 阅读教程里关于路由和状态管理的章节，然后根据需要学习 vue-router 和 vuex。同样的，先不要管构建工具，以跟着文档里的例子理解用法为主。
 - [ ] 了解 JavaScript 背后的规范，ECMAScript 的历史和目前的规范制定方式。学习 ES2015/16 的新特性，理解 ES2015 modules，适当关注[还未成为标准的提案](http://link.zhihu.com/?target=https%3A//github.com/tc39/proposals)。
 - [ ] 学习 Node.js 基础。**建议使用 [nvm](http://link.zhihu.com/?target=https%3A//github.com/creationix/nvm) 这样的工具来管理机器上的 Node 版本，并且将 npm 的 registry 注册表配置为[淘宝的镜像源](http://link.zhihu.com/?target=https%3A//npm.taobao.org/)。**至少要了解 npm 的常用命令，npm scripts 如何使用，语义化版本号规则，CommonJS 模块规范（了解它和 ES2015 Modules 的异同），Node 包的解析规则，以及 Node 的常用 API。应当做到可以自己写一些基本的命令行程序。注意最新版本的 Node (6+) 已经支持绝大部分 ES2015 的特性，可以借此巩固 ES2015。

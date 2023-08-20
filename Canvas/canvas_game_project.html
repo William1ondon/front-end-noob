@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function gamePicture() {
+            let canvasG = document.getElementById("canvas-game");
+            let ctxG = canvasG.getContext("2d");
+
+            // 边框
+            ctxG.beginPath();
+            ctxG.moveTo(50, 250);
+            ctxG.lineTo(50, 75);
+            ctxG.quadraticCurveTo(50, 50, 75, 50);
+            ctxG.lineTo(250, 50);
+
+            ctxG.moveTo(60, 250);
+            ctxG.lineTo(60, 75);
+            ctxG.quadraticCurveTo(60, 60, 75, 60);
+            ctxG.lineTo(250, 60);
+            ctxG.stroke();
+
+            eater(ctxG, 95, 95);
+            horizonDot(ctxG, 110, 95, 7);
+            rectDraw(ctxG, 70, 45, 100, 130);
+            rectDraw(ctxG, 40, 45, 210, 124);
+            rectDraw(ctxG, 70, 50, 100, 210);
+            rectDraw(ctxG, 40, 45, 210, 210);
+
+            verticalDot(ctxG, 180, 113, 3);
+            verticalDot(ctxG, 180, 210, 3);
+            horizonDot(ctxG, 90, 180, 4);
+            horizonDot(ctxG, 210, 180, 2);
+            twoeyes(ctxG, 180, 180);
+        }
+
+        // 吃豆人
+        function eater(ctxG, centerX, centerY){
+            ctxG.beginPath();
+            ctxG.arc(centerX, centerY, 15, (Math.PI / 180)*30, (Math.PI / 180)*330, false);
+            ctxG.lineTo(centerX - 5, centerY);
+            ctxG.fill();
+        }
+
+        /**
+         * @两只眼睛那个
+         * @(centerX, centerY)是两只眼睛的中心点
+         * */
+
+        function twoeyes(ctxG, centerX, centerY){
+            // 左眼最左的点
+            let llPointX = centerX - 8;
+            // 左眼最右的点
+            let lrPointX = llPointX + 5;
+            // 右眼最左的点
+            let rlPointX = centerX + 2;
+            // 右眼最右的点
+            let rrPointX = rlPointX + 5;
+
+            // 脸的最左边
+            let faceLeftX = llPointX - 4;
+            let faceRightX = rrPointX + 4
+            let faceFootY = centerY + 12;
+            ctxG.beginPath();
+            ctxG.moveTo(faceLeftX, centerY - 3);
+            ctxG.bezierCurveTo(faceLeftX + 1, centerY - 14, faceRightX - 1, centerY - 14, faceRightX, centerY - 3);
+            ctxG.lineTo(faceRightX, faceFootY);
+
+            // 锯齿
+            let totalLengthX = faceRightX - faceLeftX;
+            let trianglePerLen = totalLengthX / 3; // 每个三角形的长度
+            let stepLen = trianglePerLen / 2; // 每半个三角形的长度
+            let count = 1;
+            for(let i = 1; i <= 3; i++){
+                ctxG.lineTo(faceRightX - stepLen*count, faceFootY - trianglePerLen + 3);
+                ctxG.lineTo(faceRightX - stepLen*(count+1), faceFootY);
+                count += 2;
+            }
+            // ctxG.lineTo(faceLeftX, centerY - 3);
+            ctxG.fill();
+
+            ctxG.beginPath();
+            ctxG.fillStyle='white';
+            // 上半眼眶(左)
+            ctxG.moveTo(llPointX, centerY)
+            ctxG.bezierCurveTo(llPointX - 1, centerY - 5, lrPointX + 1, centerY - 5, lrPointX, centerY);
+            // 下半眼眶(左)
+            ctxG.bezierCurveTo(lrPointX + 1, centerY + 5, llPointX - 1, centerY + 5, llPointX,centerY);
+            ctxG.fill();
+            // 眼珠(左)
+            ctxG.beginPath();
+            ctxG.fillStyle='black';
+            ctxG.arc(llPointX + 1.5, centerY + 1.5, 1.5, (Math.PI / 180)* 0, (Math.PI / 180)* 360, true);
+            ctxG.fill();
+
+            ctxG.beginPath();
+            ctxG.fillStyle='white';
+            // 上半眼眶(右)
+            ctxG.moveTo(rlPointX, centerY)
+            ctxG.bezierCurveTo(rlPointX - 1, centerY - 5, rrPointX + 1, centerY - 5, rrPointX, centerY);
+            // 下半眼眶(右)
+            ctxG.bezierCurveTo(rrPointX + 1, centerY + 5, rlPointX - 1, centerY + 5, rlPointX, centerY);
+            ctxG.fill();
+            // 眼珠(右)
+            ctxG.beginPath();
+            ctxG.fillStyle='black';
+            ctxG.arc(rlPointX + 1.5, centerY + 1.5, 1.5, (Math.PI / 180)* 0, (Math.PI / 180)* 360, true);
+            ctxG.fill();
+        }
+
+        function horizonDot(ctxG, beginX, y, num){
+            let x = beginX;
+            for(let i = 0; i < num; i++, x += 18){
+                ctxG.beginPath();
+                ctxG.fillRect(x, y, 5, 5);    
+            }
+        }
+
+        function verticalDot(ctxG, x, beginY, num){
+            let y = beginY;
+            for(let i = 0; i < num; i++, y += 18){
+                ctxG.beginPath();
+                ctxG.fillRect(x, y, 5, 5);
+            }
+        }
+
+        function rectDraw(ctxG, width, height, x, y){
+            let radius = width / 5;
+            let tempX = x;
+            let tempY = y;
+            ctxG.beginPath();
+            ctxG.arc(tempX, tempY, radius, (Math.PI / 180)*180, (Math.PI / 180)*270, false);
+
+            // 上边
+            tempX = tempX + width - radius*2;
+            ctxG.lineTo(tempX, tempY - radius);
+            ctxG.arc(tempX, tempY, radius, (Math.PI / 180)*270, (Math.PI / 180)*0, false);
+            // 右边
+            tempY = tempY + height - radius*2;
+            ctxG.lineTo(tempX + radius, tempY);
+            ctxG.arc(tempX, tempY, radius, (Math.PI / 180)*0, (Math.PI / 180)*90, false);
+            // 下边
+            tempX = x;
+            ctxG.lineTo(tempX, tempY + radius);
+            ctxG.arc(tempX, tempY, radius, (Math.PI / 180)*90, (Math.PI / 180)*180, false);
+            ctxG.closePath();
+            ctxG.stroke();
+        }
+    </script>
+</head>
+<body onload="gamePicture()">
+    <canvas id="canvas-game" width="300" height="300"></canvas>
+</body>
+</html>

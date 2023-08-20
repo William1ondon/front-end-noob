@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Playground</title>
+    <script>
+        function draw(){
+            // var canvas0 = document.getElementById("test-canvas0");
+            // if(canvas.getContext){
+            //     // 兼容的话
+            //     var ctx0 = canvas0.getContext("2d");
+            //     ctx0.fillStyle = "rgb(200,0,0)";
+            //     ctx0.fillRect(10, 10, 55, 50);
+
+            //     ctx0.fillStyle = "rgba(0,0,200,0.5)";
+            //     ctx0.fillRect(30, 30, 55, 50);
+            // }
+
+            // var canvas1 = document.getElementById("test-canvas1");
+            // if(canvas1.getContext){
+            //     var ctx1 = canvas1.getContext("2d");
+            //     ctx1.fillStyle = "rgb(0,0,0)";
+            //     ctx1.fillRect(25,25,100,100);
+            //     ctx1.clearRect(45,45,60,60);
+            //     ctx1.strokeRect(50,50,50,50);
+            // }
+
+            // var canvas2 = document.getElementById("test-canvas2");
+            // if(canvas2.getContext){
+            //     var ctx2 = canvas2.getContext("2d");
+
+            //     ctx2.beginPath();
+            //     ctx2.moveTo(75,50);
+            //     ctx2.lineTo(100,75);
+            //     ctx2.lineTo(100,25);
+            //     ctx2.fill();
+            // }
+
+            // var canvas3 = document.getElementById("test-canvas3");
+            // if(canvas3.getContext){
+            //     var ctx3 = canvas3.getContext("2d");
+
+            //     ctx3.beginPath();
+            //     ctx3.arc(75, 75, 50, 0, Math.PI * 2, true);
+            //     // ctx3.moveTo(110, 75);
+            //     ctx3.arc(75, 75, 35, 0, Math.PI, false); // 口 (顺时针)
+            //     // ctx3.moveTo(65, 65);
+            //     ctx3.arc(60, 65, 5, 0, Math.PI * 2, true); // 左眼
+            //     // ctx3.moveTo(95, 65);
+            //     ctx3.arc(90, 65, 5, 0, Math.PI * 2, true); // 右眼
+            //     ctx3.stroke();
+            // }
+
+            // var canvas4 = document.getElementById("test-canvas4");
+            // if(canvas4.getContext){
+            //     var ctx4 = canvas4.getContext("2d");
+
+            //     ctx4.beginPath();
+            //     ctx4.moveTo(60, 60);
+            //     ctx4.lineTo(120, 60);
+            //     ctx4.lineTo(60, 120);
+            //     ctx4.closePath();
+            //     ctx4.fill();
+
+            //     ctx4.beginPath();
+            //     ctx4.moveTo(130, 60);
+            //     ctx4.lineTo(70, 120);
+            //     ctx4.lineTo(130,120);
+            //     ctx4.closePath();
+            //     ctx4.stroke();
+            // }
+
+            var canvas5 = document.getElementById("test-canvas5");
+            if(canvas5.getContext){
+                var ctx5 = canvas5.getContext("2d");
+                // 二次贝塞尔曲线
+                
+            }
+        }
+    </script>
+    <style type="text/css">
+        canvas {
+          border: 1px solid black;
+        }
+      </style>
+</head>
+<body onload="draw()">
+    <!-- <canvas id="test-canvas0" width="150" height="150"></canvas> -->
+    <!-- <canvas id="test-canvas1" width="150" height="150"></canvas> -->
+    <!-- <canvas id="test-canvas2" width="150" height="150"></canvas> -->
+    <!-- <canvas id="test-canvas3" width="600" height="600"></canvas> -->
+    <!-- <canvas id="test-canvas4" width="600" height="600"></canvas> -->
+    <canvas id="test-canvas5" width="600" height="600"></canvas>
+</body>
+</html>

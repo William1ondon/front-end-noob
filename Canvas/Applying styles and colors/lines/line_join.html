@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function draw(){
+            let ctx = document.getElementById("canvas0").getContext("2d");
+            let linejion = ['round', 'bevel', 'miter'];
+            ctx.lineWidth = 10;
+            
+            for(let i = 0; i < linejion.length; i++)
+            {
+                ctx.lineJoin = linejion[i];
+                ctx.beginPath();
+                ctx.moveTo(-5, 5 + i * 40);
+                ctx.lineTo(35, 45 + i * 40);
+                ctx.lineTo(75, 5 + i * 40);
+                ctx.lineTo(115, 45 + i * 40);
+                ctx.lineTo(155, 5 + i * 40);
+                ctx.stroke();
+            }
+            /*
+            用三条折线来做例子，分别设置不同的 lineJoin 值。最上面一条是 round 的效果，边角处被磨圆了，圆的半径等于线宽。中间和最下面一条分别是 bevel 和 miter 的效果。当值是 miter 的时候，线段会在连接处外侧延伸直至交于一点，延伸效果受到下面将要介绍的 miterLimit 属性的制约。
+            */
+        }
+    </script>
+</head>
+<body onload="draw()">
+    <canvas id="canvas0"></canvas>
+</body>
+</html>

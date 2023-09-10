@@ -43,4 +43,18 @@
 
   · rect(x, y, width, height) *// 绘制一个左上角坐标为(x, y)，宽高为width,height的矩形，此方法执行时，moveTo()方法自动设置坐标参数(0,0)*
 
+  · **Path2D对象**
+
+  Path2D对象已可以在较新版本的浏览器中使用，用来缓存或记录绘画命令，这允许我们快速地回顾路径。
+
+  用法：
+
+  ```javascript
+  var canvas = document.getElementById("canvas");
+  var ctx = canvas.getContext("2d");
+  var rectangle = new Path2D();
+  rectangle.rect(10, 10, 50, 50);
+  ctx.stroke(rectangle);
+  ```
+
   

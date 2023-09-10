@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function drawColor(){
+            let canvas = document.getElementById("canvas_colorsBar");
+            if(canvas.getContext){
+                let ctx = canvas.getContext("2d");
+                // let colorBar = new Path2D();
+
+                for(let i = 0; i < 6; i++){
+                    for(let j = 0; j < 6; j++){
+                        let r = 255 - i*42.5;
+                        let g = 255 - j*42.5;
+                        let b = 0;
+                        let color = `rgb(${r},${g},${b})`;
+                        // console.log(color);
+                        ctx.fillStyle = color;
+                        ctx.fillRect(j*30, i*30, 30, 30);
+                    }
+                }
+
+                /*
+                // [注意]，ctx.fillStyle如果使用ctx.fill只有最后那一次生效，关键是fill这个函数，而fillRect是即刻生效，即每一次fillRect都是马上上色填充；因此不能用Path2D来搞这个，因为不能一个个上色
+                for(let i = 0; i < 3; i++){
+                    for(let j = 0; j < 3; j++){
+                        let r = 0;
+                        let g = 0;
+                        // let b = 255 - (i + j)*20;
+                        let b = 0;
+                        let color = `rgb(${r},${g},${b})`;
+                        // ctx.rect(j*30, i*30, 30, 30);
+                        console.log(color);
+                        ctx.fillStyle = color;
+                        ctx.fillRect(j*30, i*30, 30, 30);
+                    }
+                }
+
+                for(let i = 3; i < 6; i++){
+                    for(let j = 3; j < 6; j++){
+                        let r = 255;
+                        let g = 155;
+                        // let b = 255 - (i + j)*20;
+                        let b = 0;
+                        let color = `rgb(${r},${g},${b})`;
+                        ctx.rect(j*30, i*30, 30, 30);
+                        console.log(color);
+                        ctx.fillStyle = color;
+                        ctx.fill();
+                    }
+                }*/
+                
+            }
+        }
+    </script>
+</head>
+<body onload="drawColor()">
+    <canvas id="canvas_colorsBar" width="300" height="300"></canvas>
+</body>
+</html>
